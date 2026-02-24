@@ -42,14 +42,14 @@ class OnBoardingPageView extends StatelessWidget {
         PageViewItem(
           isVisible:
               (pageController.hasClients ? pageController.page!.round() : 0) ==
-              1,
+              0,
           image: Assets.imagesPageViewItem2Image,
           backgroundImage: Assets.imagesPageViewItem2BackgroundImage,
           subtitle:
               'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('ابحث وتسوق')],
+            children: [Text('ابحث وتسوق', style: AppTextStyle.bold23)],
           ),
         ),
       ],
