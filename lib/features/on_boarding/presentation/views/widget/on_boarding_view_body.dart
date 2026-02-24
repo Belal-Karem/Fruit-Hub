@@ -1,7 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/constants.dart';
-import 'package:fruit_hub/core/utils/app_color.dart';
+import 'package:fruit_hub/core/utils/styles/app_color.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/widget/on_boarding_page_view.dart';
 
