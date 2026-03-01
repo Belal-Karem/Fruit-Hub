@@ -4,6 +4,7 @@ import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
+import 'package:fruit_hub/features/auth/presentation/views/widgets/or_divider.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -48,6 +49,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             const SizedBox(height: 33),
             const DontHaveAnAccountWidget(),
             const SizedBox(height: 37),
+            const OrDivider(),
           ],
         ),
       ),
