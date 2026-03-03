@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
+import 'package:fruit_hub/core/utils/styles/app_color.dart';
+import 'package:fruit_hub/core/utils/styles/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
-import 'package:fruit_hub/core/widgets/custom_text_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/or_divider.dart';
@@ -46,7 +47,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 ),
               ),
               const SizedBox(height: 16),
-              CustomTextButton(text: 'نسيت كلمة المرور؟'),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'نسيت كلمة المرور؟',
+                  style: AppTextStyle.bold13.copyWith(
+                    color: AppColor.lightPrimaryColor,
+                  ),
+                ),
+              ),
               const SizedBox(height: 32),
               CustomButton(text: 'تسجيل دخول'),
               const SizedBox(height: 33),
