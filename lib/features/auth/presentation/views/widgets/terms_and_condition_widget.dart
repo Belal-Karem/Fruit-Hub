@@ -1,19 +1,33 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/utils/styles/app_color.dart';
 import 'package:fruit_hub/core/utils/styles/app_text_style.dart';
+import 'package:fruit_hub/features/auth/presentation/views/widgets/custom_check_box.dart';
 
-class TermsAndConditionWidget extends StatelessWidget {
+class TermsAndConditionWidget extends StatefulWidget {
   const TermsAndConditionWidget({super.key});
 
+  @override
+  State<TermsAndConditionWidget> createState() =>
+      _TermsAndConditionWidgetState();
+}
+
+class _TermsAndConditionWidgetState extends State<TermsAndConditionWidget> {
+  bool termsAccepted = false;
+  @override
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          width:
-              MediaQuery.sizeOf(context).width - (kHorizontalPadding * 2) - 48,
+        CustomCheckBox(
+          isChecked: termsAccepted,
+          onChanged: (value) {
+            termsAccepted = value;
+            setState(() {});
+          },
+        ),
+        const SizedBox(width: 16),
+        Expanded(
           child: Text.rich(
             TextSpan(
               text: 'من خلال إنشاء حساب ، فإنك توافق على',
@@ -26,7 +40,7 @@ class TermsAndConditionWidget extends StatelessWidget {
 
                   text: 'الشروط والأحكام الخاصة بنا',
                   style: AppTextStyle.bold13.copyWith(
-                    color: AppColor.primaryColor,
+                    color: AppColor.lightPrimaryColor,
                   ),
                 ),
               ],
