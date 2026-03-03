@@ -1,10 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/constants.dart';
+import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 
-class SignupViewBody extends StatelessWidget {
+class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
 
   @override
+  State<SignupViewBody> createState() => _SignupViewBodyState();
+}
+
+class _SignupViewBodyState extends State<SignupViewBody> {
+  bool isPassword = true;
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        child: Column(
+          children: [
+            const CustomTextFormField(
+              hintText: 'الاسم كامل',
+              keyboardType: TextInputType.name,
+            ),
+            const SizedBox(height: 16),
+            const CustomTextFormField(
+              hintText: 'البريد الإلكتروني',
+              keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 16),
+            CustomTextFormField(
+              hintText: 'كلمة المرور',
+              keyboardType: TextInputType.visiblePassword,
+              obscureText: isPassword,
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isPassword = !isPassword;
+                  });
+                },
+                icon: Icon(
+                  isPassword ? Icons.visibility : Icons.visibility_off_outlined,
+                  color: Color(0xffC9CECF),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
