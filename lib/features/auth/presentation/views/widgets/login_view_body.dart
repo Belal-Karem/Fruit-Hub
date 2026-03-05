@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
-import 'package:fruit_hub/core/utils/styles/app_color.dart';
-import 'package:fruit_hub/core/utils/styles/app_text_style.dart';
+import 'package:fruit_hub/core/utils/theme/app_color.dart';
+import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
