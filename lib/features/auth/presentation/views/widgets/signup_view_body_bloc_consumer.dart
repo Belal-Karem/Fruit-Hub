@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../manger/signup_cubit/signup_cubit.dart';
@@ -12,7 +13,10 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is SignupSuccess) {}
+        if (state is SignupFailure) {
+          showSnackBar(context, state);
+        }
       },
       builder: (context, state) {
         return ModalProgressHUD(
