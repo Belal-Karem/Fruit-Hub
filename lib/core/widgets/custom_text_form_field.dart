@@ -7,14 +7,12 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
     this.suffixIcon,
-    this.onPressed,
     required this.keyboardType,
     this.onSaved,
   });
   final String hintText;
   final bool obscureText;
   final Widget? suffixIcon;
-  final VoidCallback? onPressed;
   final TextInputType keyboardType;
   final void Function(String?)? onSaved;
   @override
@@ -32,10 +30,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: const Color(0xFFF9FAFA),
-        suffixIcon: IconButton(
-          onPressed: onPressed,
-          icon: suffixIcon ?? const SizedBox(),
-        ),
+        suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: AppTextStyle.bold13,
         border: buildBorder(),

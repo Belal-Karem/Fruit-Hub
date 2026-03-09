@@ -5,6 +5,7 @@ import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/features/auth/presentation/manger/signup_cubit/signup_cubit.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/have_an_account.dart';
+import 'package:fruit_hub/core/widgets/password_field.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/terms_and_condition_widget.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -15,7 +16,6 @@ class SignupViewBody extends StatefulWidget {
 }
 
 class _SignupViewBodyState extends State<SignupViewBody> {
-  bool isPassword = true;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password, name;
@@ -46,26 +46,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
-              CustomTextFormField(
+              PasswordField(
                 onSaved: (value) {
                   password = value!;
                 },
-                hintText: 'كلمة المرور',
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: isPassword,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isPassword = !isPassword;
-                    });
-                  },
-                  icon: Icon(
-                    isPassword
-                        ? Icons.visibility
-                        : Icons.visibility_off_outlined,
-                    color: Color(0xffC9CECF),
-                  ),
-                ),
               ),
               const SizedBox(height: 16),
               const TermsAndConditionWidget(),
