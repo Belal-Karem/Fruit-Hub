@@ -18,17 +18,40 @@ class AuthRepoImle extends AuthRepo {
     String password,
     String name,
   ) async {
+    var user = await firebaseAuthService.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
     try {
-      var user = await firebaseAuthService.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       log(
         'Exception in AuthRepoImle.createUserWithEmailAndPassword ${e.toString()}',
       );
       return left(ServerFailure(e.message));
+    } catch (e) {
+      return left(ServerFailure('حدث خطأ غير متوقع'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    var user = await firebaseAuthService.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    try {
+      return right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      log(
+        'Exception in AuthRepoImle.signInWithEmailAndPassword ${e.toString()}',
+      );
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      return left(ServerFailure('حدث خطاء غير متوقع'));
     }
   }
 }
