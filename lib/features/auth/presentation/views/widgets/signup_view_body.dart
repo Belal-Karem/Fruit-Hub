@@ -8,6 +8,8 @@ import 'package:fruit_hub/features/auth/presentation/views/widgets/have_an_accou
 import 'package:fruit_hub/core/widgets/password_field.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/terms_and_condition_widget.dart';
 
+import '../../../../../core/helper_functions/show_snack_bar.dart';
+
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
 
@@ -19,6 +21,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password, name;
+  late bool termsAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +55,31 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-              const TermsAndConditionWidget(),
+              TermsAndConditionWidget(
+                onChanged: (value) {
+                  termsAccepted = value;
+                },
+              ),
               const SizedBox(height: 30),
               CustomButton(
                 text: 'إنشاء حساب جديد',
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    context.read<SignupCubit>().creareUserWithEmailAndPassword(
-                      email,
-                      password,
-                      name,
-                    );
+                    if (termsAccepted) {
+                      formKey.currentState!.save();
+                      context
+                          .read<SignupCubit>()
+                          .creareUserWithEmailAndPassword(
+                            email,
+                            password,
+                            name,
+                          );
+                    } else {
+                      buildErrorBar(
+                        context,
+                        'يجب عليك الموفقا علي الشروط و الاحكام ',
+                      );
+                    }
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                   }

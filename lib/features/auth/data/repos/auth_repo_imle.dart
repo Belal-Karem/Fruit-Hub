@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub/core/error/exception.dart';
 import 'package:fruit_hub/core/error/failures.dart';
@@ -23,6 +25,9 @@ class AuthRepoImle extends AuthRepo {
       );
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
+      log(
+        'Exception in AuthRepoImle.createUserWithEmailAndPassword ${e.toString()}',
+      );
       return left(ServerFailure(e.message));
     }
   }
