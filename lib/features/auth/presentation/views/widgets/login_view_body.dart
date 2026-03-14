@@ -25,74 +25,73 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   late String email, password;
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomTextFormField(
-                  hintText: 'البريد الإلكتروني',
-                  keyboardType: TextInputType.emailAddress,
-                  onSaved: (value) {
-                    email = value!;
-                  },
-                ),
-                const SizedBox(height: 16),
-                PasswordField(
-                  onSaved: (value) {
-                    password = value!;
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'نسيت كلمة المرور؟',
-                    style: AppTextStyle.bold13.copyWith(
-                      color: AppColor.lightPrimaryColor,
-                    ),
+        child: Form(
+          key: formKey,
+          autovalidateMode: autovalidateMode,
+          child: Column(
+            children: [
+              CustomTextFormField(
+                hintText: 'البريد الإلكتروني',
+                keyboardType: TextInputType.emailAddress,
+                onSaved: (value) {
+                  email = value!;
+                },
+              ),
+              const SizedBox(height: 16),
+              PasswordField(
+                onSaved: (value) {
+                  password = value!;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'نسيت كلمة المرور؟',
+                  style: AppTextStyle.bold13.copyWith(
+                    color: AppColor.lightPrimaryColor,
                   ),
                 ),
-                const SizedBox(height: 32),
-                CustomButton(
-                  text: 'تسجيل دخول',
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      context.read<LoginCubit>().loginWithEmailAndPassword(
-                        email: email,
-                        password: password,
-                      );
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                    }
-                  },
-                ),
-                const SizedBox(height: 33),
-                const DontHaveAnAccountWidget(),
-                const SizedBox(height: 37),
-                const OrDivider(),
-                const SizedBox(height: 20),
-                const SocialLoginButton(
-                  text: 'تسجيل بواسطة جوجل',
-                  imagePath: Assets.imagesGoogleIcon,
-                ),
-                const SizedBox(height: 16),
-                const SocialLoginButton(
-                  text: 'تسجيل بواسطة أبل',
-                  imagePath: Assets.imagesAppleIcon,
-                ),
-                const SizedBox(height: 16),
-                const SocialLoginButton(
-                  text: 'تسجيل بواسطة فيسبوك',
-                  imagePath: Assets.imagesFacebookIcon,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 32),
+              CustomButton(
+                text: 'تسجيل دخول',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    context.read<LoginCubit>().loginWithEmailAndPassword(
+                      email: email,
+                      password: password,
+                    );
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              ),
+              const SizedBox(height: 33),
+              const DontHaveAnAccountWidget(),
+              const SizedBox(height: 37),
+              const OrDivider(),
+              const SizedBox(height: 20),
+              const SocialLoginButton(
+                text: 'تسجيل بواسطة جوجل',
+                imagePath: Assets.imagesGoogleIcon,
+              ),
+              const SizedBox(height: 16),
+              const SocialLoginButton(
+                text: 'تسجيل بواسطة أبل',
+                imagePath: Assets.imagesAppleIcon,
+              ),
+              const SizedBox(height: 16),
+              const SocialLoginButton(
+                text: 'تسجيل بواسطة فيسبوك',
+                imagePath: Assets.imagesFacebookIcon,
+              ),
+            ],
           ),
         ),
       ),

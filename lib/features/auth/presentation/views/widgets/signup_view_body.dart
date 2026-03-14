@@ -82,6 +82,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     }
                   } else {
                     autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
                   }
                 },
               ),

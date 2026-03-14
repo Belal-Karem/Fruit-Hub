@@ -14,7 +14,7 @@ class UserModel extends UserEntity {
       email: user.email!,
       password: '',
       uId: user.uid,
-      name: user.displayName!,
+      name: user.displayName ?? '',
     );
   }
 }
