@@ -18,11 +18,11 @@ class AuthRepoImle extends AuthRepo {
     String password,
     String name,
   ) async {
-    var user = await firebaseAuthService.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
     try {
+      var user = await firebaseAuthService.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       log(
@@ -39,11 +39,11 @@ class AuthRepoImle extends AuthRepo {
     required String email,
     required String password,
   }) async {
-    var user = await firebaseAuthService.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
     try {
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       log(
@@ -57,8 +57,8 @@ class AuthRepoImle extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
-    var user = await firebaseAuthService.signInWithGoogle();
     try {
+      var user = await firebaseAuthService.signInWithGoogle();
       return right(UserModel.fromFirebaseUser(user.user!));
     } on CustomException catch (e) {
       log('Exception in AuthRepoImle.signInWithGoogle ${e.toString()}');
@@ -70,8 +70,8 @@ class AuthRepoImle extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
-    var user = await firebaseAuthService.signInWithFacebook();
     try {
+      var user = await firebaseAuthService.signInWithFacebook();
       return right(UserModel.fromFirebaseUser(user.user!));
     } on CustomException catch (e) {
       log('Exception in AuthRepoImle.signInWithFacebook ${e.toString()}');

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,10 +22,23 @@ class FirebaseAuthService {
         throw CustomException('كلمة المرور المقدمة ضعيفة للغاية.');
       } else if (e.code == 'email-already-in-use') {
         throw CustomException('الحساب موجود بالفعل لهذا البريد الإلكتروني.');
+      } else if (e.code == 'invalid-credential') {
+        throw CustomException('الإيميل أو كلمة المرور غير صحيحة.');
       } else if (e.code == 'network-request-failed') {
-        throw CustomException('network it,s failed');
+        throw CustomException('تحقق من الاتصال بالانترنت');
       } else {
         throw CustomException('حدث خطأ. يرجى المحاولة مرة أخرى لاحقاً.');
+      }
+    } on PlatformException catch (e) {
+      log(
+        'Exception in FirebaseAuthService.signInWithEmailAndPassword${e.toString()}',
+      );
+      if (e.code == 'ERROR_INVALID_EMAIL') {
+        throw CustomException('الإيميل أو كلمة المرور غير صحيحة.');
+      } else if (e.code == 'ERROR_INVALID_CREDENTIAL') {
+        throw CustomException('البريد الإلكتروني غير صحيح');
+      } else {
+        throw CustomException('خطأ في الإدخال');
       }
     } catch (e) {
       log(
@@ -52,10 +66,23 @@ class FirebaseAuthService {
         throw CustomException('لا يوجد حساب بهذا البريد الإلكتروني.');
       } else if (e.code == 'wrong-password') {
         throw CustomException('كلمة المرور غير صحيحة.');
+      } else if (e.code == 'invalid-credential') {
+        throw CustomException('الإيميل أو كلمة المرور غير صحيحة.');
       } else if (e.code == 'network-request-failed') {
         throw CustomException('تحقق من الاتصال بالانترنت');
       } else {
         throw CustomException('حدث خطاء. يرجى المحاولة مرة اخرى لاحقا.');
+      }
+    } on PlatformException catch (e) {
+      log(
+        'Exception in FirebaseAuthService.signInWithEmailAndPassword${e.toString()}',
+      );
+      if (e.code == 'ERROR_INVALID_EMAIL') {
+        throw CustomException('الإيميل أو كلمة المرور غير صحيحة.');
+      } else if (e.code == 'ERROR_INVALID_CREDENTIAL') {
+        throw CustomException('البريد الإلكتروني غير صحيح');
+      } else {
+        throw CustomException('خطأ في الإدخال');
       }
     } catch (e) {
       log(
@@ -66,7 +93,6 @@ class FirebaseAuthService {
   }
 
   Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     final GoogleSignInAuthentication? googleAuth =
