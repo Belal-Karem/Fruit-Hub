@@ -54,4 +54,17 @@ class AuthRepoImle extends AuthRepo {
       return left(ServerFailure('حدث خطاء غير متوقع'));
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    var user = await firebaseAuthService.signInWithGoogle();
+    try {
+      return right(UserModel.fromFirebaseUser(user.user!));
+    } on CustomException catch (e) {
+      log('Exception in AuthRepoImle.signInWithGoogle ${e.toString()}');
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      return left(ServerFailure('حدث خطاء غير متوقع'));
+    }
+  }
 }

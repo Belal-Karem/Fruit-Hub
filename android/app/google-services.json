@@ -12,7 +12,20 @@
           "package_name": "com.example.fruit_hub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "759189780705-48p6j6uv4emd8ett9k2aalb6d20r2kpr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fruit_hub",
+            "certificate_hash": "291a87f4728bb35a3b01b24f1383eacc79d9b725"
+          }
+        },
+        {
+          "client_id": "759189780705-ulqc9328klasd5ck1i6hvekma74amatc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBvBMPTkA32zQ6oc1jImNYbqb68fYNqGu4"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759189780705-33dmioq71silhmb7tfnao2su2oh4att3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "759189780705-ire2tomdg51a2dk7mrulf4n37j357hdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fruitHub"
+              }
+            }
+          ]
         }
       }
     }

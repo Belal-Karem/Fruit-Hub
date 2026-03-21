@@ -47,14 +47,19 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'نسيت كلمة المرور؟',
-                  style: AppTextStyle.bold13.copyWith(
-                    color: AppColor.lightPrimaryColor,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'نسيت كلمة المرور؟',
+                      style: AppTextStyle.bold13.copyWith(
+                        color: AppColor.lightPrimaryColor,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               const SizedBox(height: 32),
               CustomButton(
@@ -77,7 +82,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               const SizedBox(height: 37),
               const OrDivider(),
               const SizedBox(height: 20),
-              const SocialLoginButton(
+              SocialLoginButton(
+                onPressed: () async {
+                  context.read<LoginCubit>().loginWithGoogle();
+                },
                 text: 'تسجيل بواسطة جوجل',
                 imagePath: Assets.imagesGoogleIcon,
               ),
