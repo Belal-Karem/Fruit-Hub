@@ -29,7 +29,7 @@ class AuthRepoImle extends AuthRepo {
         email: email,
         password: password,
       );
-      var userEntity = UserModel.fromFirebaseUser(user);
+      var userEntity = UserEntity(email: email, uId: user.uid, name: name);
       await addUserDate(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
@@ -38,6 +38,9 @@ class AuthRepoImle extends AuthRepo {
       );
       return left(ServerFailure(e.message));
     } catch (e) {
+      log(
+        'Exception in AuthRepoImle.createUserWithEmailAndPassword ${e.toString()}',
+      );
       return left(ServerFailure('حدث خطأ غير متوقع'));
     }
   }

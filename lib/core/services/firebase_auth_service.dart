@@ -37,6 +37,8 @@ class FirebaseAuthService {
         throw CustomException('الإيميل أو كلمة المرور غير صحيحة.');
       } else if (e.code == 'ERROR_INVALID_CREDENTIAL') {
         throw CustomException('البريد الإلكتروني غير صحيح');
+      } else if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
+        throw CustomException('البريد الإلكتروني مستخدم بالفعل');
       } else {
         throw CustomException('خطأ في الإدخال');
       }
