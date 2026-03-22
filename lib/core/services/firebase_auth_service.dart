@@ -6,6 +6,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruit_hub/core/error/exception.dart';
 
 class FirebaseAuthService {
+  // I need to create this method for it to be accepted on Google Play
+  Future<void> deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
+
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
