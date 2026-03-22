@@ -99,7 +99,7 @@ class FirebaseAuthService {
     }
   }
 
-  Future<UserCredential> signInWithGoogle() async {
+  Future<User> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     final GoogleSignInAuthentication? googleAuth =
@@ -109,16 +109,21 @@ class FirebaseAuthService {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final userCredential = await FirebaseAuth.instance.signInWithCredential(
+      credential,
+    );
+    return userCredential.user!;
   }
 
-  Future<UserCredential> signInWithFacebook() async {
+  Future<User> signInWithFacebook() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    final userCredential = await FirebaseAuth.instance.signInWithCredential(
+      facebookAuthCredential,
+    );
+    return userCredential.user!;
   }
 }

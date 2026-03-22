@@ -34,9 +34,7 @@ class AuthRepoImle extends AuthRepo {
       await addUserDate(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
-      if (user != null) {
-        await firebaseAuthService.deleteUser();
-      }
+      await deleteUser(user);
       log(
         'Exception in AuthRepoImle.createUserWithEmailAndPassword ${e.toString()}',
       );
@@ -45,10 +43,14 @@ class AuthRepoImle extends AuthRepo {
       log(
         'Exception in AuthRepoImle.createUserWithEmailAndPassword ${e.toString()}',
       );
-      if (user != null) {
-        await firebaseAuthService.deleteUser();
-      }
+      await deleteUser(user);
       return left(ServerFailure('حدث خطأ غير متوقع'));
+    }
+  }
+
+  Future<void> deleteUser(User? user) async {
+    if (user != null) {
+      await firebaseAuthService.deleteUser();
     }
   }
 
@@ -75,26 +77,36 @@ class AuthRepoImle extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithGoogle();
-      return right(UserModel.fromFirebaseUser(user.user!));
+      user = await firebaseAuthService.signInWithGoogle();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDate(user: userEntity);
+      return right(userEntity);
     } on CustomException catch (e) {
+      await deleteUser(user);
       log('Exception in AuthRepoImle.signInWithGoogle ${e.toString()}');
       return left(ServerFailure(e.message));
     } catch (e) {
+      await deleteUser(user);
       return left(ServerFailure('حدث خطاء غير متوقع'));
     }
   }
 
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithFacebook();
-      return right(UserModel.fromFirebaseUser(user.user!));
+      user = await firebaseAuthService.signInWithFacebook();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDate(user: userEntity);
+      return right(userEntity);
     } on CustomException catch (e) {
+      await deleteUser(user);
       log('Exception in AuthRepoImle.signInWithFacebook ${e.toString()}');
       return left(ServerFailure(e.message));
     } catch (e) {
+      await deleteUser(user);
       return left(ServerFailure('حدث خطاء غير متوقع'));
     }
   }
