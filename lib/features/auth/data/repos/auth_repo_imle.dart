@@ -3,15 +3,21 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub/core/error/exception.dart';
 import 'package:fruit_hub/core/error/failures.dart';
+import 'package:fruit_hub/core/services/data_base_service.dart';
 import 'package:fruit_hub/core/services/firebase_auth_service.dart';
+import 'package:fruit_hub/core/utils/backend_endpoint.dart';
 import 'package:fruit_hub/features/auth/data/models/user_model.dart';
 import 'package:fruit_hub/features/auth/domain/entity/user_entity.dart';
 import 'package:fruit_hub/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImle extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
+  final DataBaseService dataBaseService;
 
-  AuthRepoImle({required this.firebaseAuthService});
+  AuthRepoImle({
+    required this.dataBaseService,
+    required this.firebaseAuthService,
+  });
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
     String email,
@@ -23,7 +29,9 @@ class AuthRepoImle extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user));
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDate(user: userEntity);
+      return right(userEntity);
     } on CustomException catch (e) {
       log(
         'Exception in AuthRepoImle.createUserWithEmailAndPassword ${e.toString()}',
@@ -79,5 +87,13 @@ class AuthRepoImle extends AuthRepo {
     } catch (e) {
       return left(ServerFailure('حدث خطاء غير متوقع'));
     }
+  }
+
+  @override
+  Future addUserDate({required UserEntity user}) async {
+    await dataBaseService.addDtata(
+      path: BackendEndpoint.addUserdata,
+      data: user.toMap(),
+    );
   }
 }
