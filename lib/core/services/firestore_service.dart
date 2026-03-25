@@ -43,7 +43,7 @@ class FirestoreService implements DataBaseService {
   }) async {
     try {
       var data = await firestore.collection(path).doc(uId).get();
-      return UserModel.fromJson(data.data() as Map<String, dynamic>);
+      return UserModel.formFireBase(data.data() as Map<String, dynamic>);
     } on FirebaseException catch (e) {
       log(
         'Exception in FirestoreService.getData ${e.toString()} and code is ${e.code} ',
