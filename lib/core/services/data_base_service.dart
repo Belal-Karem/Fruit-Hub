@@ -10,4 +10,6 @@ abstract class DataBaseService {
     required String path,
     required String uId,
   });
+
+  Future<bool> checkIfDataExist({required String path, required String uId});
 }

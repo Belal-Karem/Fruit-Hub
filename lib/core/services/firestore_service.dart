@@ -63,4 +63,13 @@ class FirestoreService implements DataBaseService {
       throw CustomException('حدث خطاء غير متوقع');
     }
   }
+
+  @override
+  Future<bool> checkIfDataExist({
+    required String path,
+    required String uId,
+  }) async {
+    var data = await firestore.collection(path).doc(uId).get();
+    return data.exists;
+  }
 }

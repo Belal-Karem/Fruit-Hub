@@ -82,7 +82,15 @@ class AuthRepoImle extends AuthRepo {
     try {
       user = await firebaseAuthService.signInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user);
-      await addUserDate(user: userEntity);
+      var userexist = await dataBaseService.checkIfDataExist(
+        path: BackendEndpoint.isUserExist,
+        uId: user.uid,
+      );
+      if (userexist) {
+        await getUserDarta(uId: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
       return right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -100,7 +108,15 @@ class AuthRepoImle extends AuthRepo {
     try {
       user = await firebaseAuthService.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user);
-      await addUserDate(user: userEntity);
+      var userexist = await dataBaseService.checkIfDataExist(
+        path: BackendEndpoint.isUserExist,
+        uId: user.uid,
+      );
+      if (userexist) {
+        await getUserDarta(uId: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
       return right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
