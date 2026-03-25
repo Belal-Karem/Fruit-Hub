@@ -64,7 +64,8 @@ class AuthRepoImle extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user));
+      var userEntity = await getUserDarta(uId: user.uid);
+      return right(userEntity);
     } on CustomException catch (e) {
       log(
         'Exception in AuthRepoImle.signInWithEmailAndPassword ${e.toString()}',
@@ -112,18 +113,20 @@ class AuthRepoImle extends AuthRepo {
   }
 
   @override
-  Future addUserDate({required UserEntity user}) async {
-    try {
-      await dataBaseService.addDtata(
-        path: BackendEndpoint.addUserdata,
-        data: user.toMap(),
-      );
-    } on CustomException catch (e) {
-      log('Exception in AuthRepoImle.addUserDate ${e.toString()}');
-      return ServerFailure(e.message);
-    } catch (e) {
-      log('Exception in AuthRepoImle.addUserDate ${e.toString()}');
-      return ServerFailure('حدث خطاء غير متوقع');
-    }
+  Future<void> addUserDate({required UserEntity user}) async {
+    await dataBaseService.addDtata(
+      path: BackendEndpoint.addUserdata,
+      data: user.toMap(),
+      uId: user.uId,
+    );
+  }
+
+  @override
+  Future<UserEntity> getUserDarta({required String uId}) async {
+    var data = await dataBaseService.getData(
+      path: BackendEndpoint.getUserData,
+      uId: uId,
+    );
+    return UserModel.fromJson(data);
   }
 }
