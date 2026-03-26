@@ -4,10 +4,10 @@ import 'package:fruit_hub/features/home/presentation/views/widgets/home_view_bod
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  static const routeName = 'home';
+  static const routeName = 'home_view';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeViewBody());
+    return Scaffold(body: SafeArea(child: HomeViewBody()));
   }
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
+  
   /// Assets for imagesAppIcon
   /// assets/images/app_icon.png
   static const String imagesAppIcon = "assets/images/app_icon.png";
@@ -26,27 +26,32 @@ class Assets {
   /// assets/images/Logo.svg
   static const String imagesLogo = "assets/images/Logo.svg";
 
+  /// Assets for imagesNotification
+  /// assets/images/notification.svg
+  static const String imagesNotification = "assets/images/notification.svg";
+
   /// Assets for imagesPageViewItem1BackgroundImage
   /// assets/images/page_view_item1_background_Image.svg
-  static const String imagesPageViewItem1BackgroundImage =
-      "assets/images/page_view_item1_background_Image.svg";
+  static const String imagesPageViewItem1BackgroundImage = "assets/images/page_view_item1_background_Image.svg";
 
   /// Assets for imagesPageViewItem1Image
   /// assets/images/page_view_item1_Image.svg
-  static const String imagesPageViewItem1Image =
-      "assets/images/page_view_item1_Image.svg";
+  static const String imagesPageViewItem1Image = "assets/images/page_view_item1_Image.svg";
 
   /// Assets for imagesPageViewItem2BackgroundImage
   /// assets/images/page_view_item2_background_Image.svg
-  static const String imagesPageViewItem2BackgroundImage =
-      "assets/images/page_view_item2_background_Image.svg";
+  static const String imagesPageViewItem2BackgroundImage = "assets/images/page_view_item2_background_Image.svg";
 
   /// Assets for imagesPageViewItem2Image
   /// assets/images/page_view_item2_Image.svg
-  static const String imagesPageViewItem2Image =
-      "assets/images/page_view_item2_Image.svg";
+  static const String imagesPageViewItem2Image = "assets/images/page_view_item2_Image.svg";
 
   /// Assets for imagesPlant
   /// assets/images/Plant.svg
   static const String imagesPlant = "assets/images/Plant.svg";
+
+  /// Assets for imagesProfileImage
+  /// assets/images/profile_image.png
+  static const String imagesProfileImage = "assets/images/profile_image.png";
 }
+
