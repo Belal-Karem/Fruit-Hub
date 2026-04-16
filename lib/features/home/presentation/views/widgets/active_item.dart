@@ -11,40 +11,38 @@ class ActiveItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child: Container(
-          width: 78,
-          height: 30,
-          decoration: ShapeDecoration(
-            color: const Color(0xFFEEEEEE),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+    return Center(
+      child: Container(
+        width: 78,
+        height: 30,
+        decoration: ShapeDecoration(
+          color: const Color(0xFFEEEEEE),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: ShapeDecoration(
+                color: const Color(0xFF1B5E37),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Center(child: SvgPicture.asset(image)),
             ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF1B5E37),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Center(child: SvgPicture.asset(image)),
+            const SizedBox(width: 4),
+            Text(
+              name,
+              style: AppTextStyle.semiBold11.copyWith(
+                color: AppColor.primaryColor,
               ),
-              const SizedBox(width: 4),
-              Text(
-                name,
-                style: AppTextStyle.semiBold11.copyWith(
-                  color: AppColor.primaryColor,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
