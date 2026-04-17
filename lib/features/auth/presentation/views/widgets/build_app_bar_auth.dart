@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 
 @override
-AppBar buildAppBar(BuildContext context, {required String title}) {
+AppBar buildAppBarAuth(BuildContext context, {required String title}) {
   return AppBar(
     backgroundColor: Colors.white,
     leading: GestureDetector(

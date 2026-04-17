@@ -3,11 +3,11 @@ import 'package:fruit_hub/core/widgets/notification_widget.dart';
 
 import '../utils/theme/app_text_style.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar({required String title}) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
-    title: Text('الأكثر مبيعًا', style: AppTextStyle.bold19),
+    title: Text(title, style: AppTextStyle.bold19),
     centerTitle: true,
     actions: [
       const Padding(
