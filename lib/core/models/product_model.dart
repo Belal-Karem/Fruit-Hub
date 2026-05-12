@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:fruit_hub/core/entites/product_entity.dart';
-
+import '../entites/product_entity.dart';
 import 'review_model.dart';
 
 class ProductModel {
@@ -35,20 +34,40 @@ class ProductModel {
     required this.unitAmount,
   });
 
-  factory ProductModel.fromEntity(ProductEntity entity) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
-      name: entity.name,
-      description: entity.description,
-      code: entity.code,
-      isFeatured: entity.isFeatured,
-      price: entity.price,
-      image: entity.image,
-      imageUrl: entity.imageUrl,
-      isOrganic: entity.isOrganic,
-      expirationsMonthsl: entity.expirationsMonthsl,
-      numberOfCalories: entity.numberOfCalories,
-      unitAmount: entity.unitAmount,
+      reviews: json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)),
+            )
+          : [],
+      name: json['name'],
+      description: json['description'],
+      code: json['code'],
+      isFeatured: json['isFeatured'],
+      price: json['price'],
+      imageUrl: json['imageUrl'],
+      expirationsMonthsl: json['expirationsMonthsl'],
+      isOrganic: json['isOrganic'],
+      numberOfCalories: json['numberOfCalories'],
+      unitAmount: json['unitAmount'],
+      image: File(json['image']),
+    );
+  }
+  ProductEntity toEntity() {
+    return ProductEntity(
+      reviews: reviews.map((e) => e.toEntity()).toList(),
+      name: name,
+      description: description,
+      code: code,
+      isFeatured: isFeatured,
+      price: price,
+      imageUrl: imageUrl,
+      expirationsMonthsl: expirationsMonthsl,
+      isOrganic: isOrganic,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      image: image,
     );
   }
 

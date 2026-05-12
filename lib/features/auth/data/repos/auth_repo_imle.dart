@@ -87,7 +87,7 @@ class AuthRepoImle extends AuthRepo {
       var userEntity = UserModel.fromFirebaseUser(user);
       var userexist = await dataBaseService.checkIfDataExist(
         path: BackendEndpoint.isUserExist,
-        uId: user.uid,
+        docId: user.uid,
       );
       if (userexist) {
         await getUserDarta(uId: user.uid);
@@ -113,7 +113,7 @@ class AuthRepoImle extends AuthRepo {
       var userEntity = UserModel.fromFirebaseUser(user);
       var userexist = await dataBaseService.checkIfDataExist(
         path: BackendEndpoint.isUserExist,
-        uId: user.uid,
+        docId: user.uid,
       );
       if (userexist) {
         await getUserDarta(uId: user.uid);
@@ -136,7 +136,7 @@ class AuthRepoImle extends AuthRepo {
     await dataBaseService.addDtata(
       path: BackendEndpoint.addUserdata,
       data: UserModel.fromEntity(user).toMap(),
-      uId: user.uId,
+      docId: user.uId,
     );
   }
 
@@ -144,7 +144,7 @@ class AuthRepoImle extends AuthRepo {
   Future<UserEntity> getUserDarta({required String uId}) async {
     var data = await dataBaseService.getData(
       path: BackendEndpoint.getUserData,
-      uId: uId,
+      docId: uId,
     );
     return UserModel.fromJson(data);
   }

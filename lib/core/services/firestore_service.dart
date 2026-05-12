@@ -10,11 +10,11 @@ class FirestoreService implements DataBaseService {
   Future<void> addDtata({
     required String path,
     required Map<String, dynamic> data,
-    String? uId,
+    String? docId,
   }) async {
     try {
-      if (uId != null) {
-        await firestore.collection(path).doc(uId).set(data);
+      if (docId != null) {
+        await firestore.collection(path).doc(docId).set(data);
       } else {
         await firestore.collection(path).add(data);
       }
@@ -38,13 +38,15 @@ class FirestoreService implements DataBaseService {
   }
 
   @override
-  Future<Map<String, dynamic>> getData({
-    required String path,
-    required String uId,
-  }) async {
+  Future<dynamic> getData({required String path, String? docId}) async {
     try {
-      var data = await firestore.collection(path).doc(uId).get();
-      return data.data() as Map<String, dynamic>;
+      if (docId != null) {
+        var data = await firestore.collection(path).doc(docId).get();
+        return data.data() as Map<String, dynamic>;
+      } else {
+        var data = await firestore.collection(path).get();
+        return data.docs.map((e) => e.data()).toList();
+      }
     } on FirebaseException catch (e) {
       log(
         'Exception in FirestoreService.getData ${e.toString()} and code is ${e.code} ',
@@ -67,9 +69,9 @@ class FirestoreService implements DataBaseService {
   @override
   Future<bool> checkIfDataExist({
     required String path,
-    required String uId,
+    required String docId,
   }) async {
-    var data = await firestore.collection(path).doc(uId).get();
+    var data = await firestore.collection(path).doc(docId).get();
     return data.exists;
   }
 }
