@@ -67,7 +67,7 @@ class AuthRepoImle extends AuthRepo {
         password: password,
       );
       var userEntity = await getUserDarta(uId: user.uid);
-      var UserData = await saveUserData(user: userEntity);
+      await saveUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
       log(
