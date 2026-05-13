@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/cubits/products_cubit/products_cubit.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/search_text_field.dart';
@@ -7,8 +9,19 @@ import 'best_selling_header.dart';
 import 'custom_home_app_bar.dart';
 import 'featured_list_view.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ProductsCubit>().getBestSellingProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
