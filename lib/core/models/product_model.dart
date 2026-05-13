@@ -14,6 +14,7 @@ class ProductModel {
   final int expirationsMonthsl;
   final bool isOrganic;
   final int numberOfCalories;
+  final int sellingCount;
   final num avgRating = 0;
   final num ratingCount = 0;
   final int unitAmount;
@@ -25,6 +26,7 @@ class ProductModel {
     required this.description,
     required this.code,
     required this.isFeatured,
+    this.sellingCount = 0,
     required this.price,
     required this.image,
     this.isOrganic = false,
@@ -43,8 +45,9 @@ class ProductModel {
           : [],
       name: json['name'],
       description: json['description'],
+      sellingCount: json['sellingCount'],
       code: json['code'],
-      isFeatured: json['isFeatured'],
+      isFeatured: json['isFeatFured'],
       price: json['price'],
       imageUrl: json['imageUrl'],
       expirationsMonthsl: json['expirationsMonthsl'],
@@ -79,6 +82,7 @@ class ProductModel {
       'code': code,
       'isFeatured': isFeatured,
       'price': price,
+
       'imageUrl': imageUrl,
       'expirationsMonthsl': expirationsMonthsl,
       'isOrganic': isOrganic,
