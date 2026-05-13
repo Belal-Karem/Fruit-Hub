@@ -4,7 +4,7 @@ import 'package:fruit_hub/core/cubits/products_cubit/products_cubit.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/search_text_field.dart';
-import 'best_selling_grid_view.dart';
+import 'best_selling_grid_view_bloc_builder.dart';
 import 'best_selling_header.dart';
 import 'custom_home_app_bar.dart';
 import 'featured_list_view.dart';
@@ -44,7 +44,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               ],
             ),
           ),
-          BestSellingGridView(),
+          BestSellingGridViewBlocBuilder(),
         ],
       ),
     );
