@@ -46,4 +46,19 @@ class ReviewModel {
     'date': date,
     'reviewdescription': reviewdescription,
   };
+  copyWith({
+    String? name,
+    String? image,
+    num? rating,
+    String? date,
+    String? reviewdescription,
+  }) {
+    return ReviewEntite(
+      name: name ?? this.name,
+      image: image ?? this.image,
+      rating: rating ?? this.rating,
+      date: date ?? this.date,
+      reviewdescription: reviewdescription ?? this.reviewdescription,
+    );
+  }
 }

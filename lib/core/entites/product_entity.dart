@@ -8,13 +8,13 @@ class ProductEntity {
   final String code;
   final bool isFeatured;
   final num price;
-  final File image;
+  final File? image;
   String? imageUrl;
   final int expirationsMonthsl;
   final bool isOrganic;
   final int numberOfCalories;
-  final num avgRating = 0;
-  final num ratingCount = 0;
+  final num avgRating;
+  final num ratingCount;
   final int unitAmount;
   final List<ReviewEntite> reviews;
 
@@ -29,7 +29,9 @@ class ProductEntity {
     required this.code,
     required this.isFeatured,
     required this.price,
-    required this.image,
+    this.image,
     this.imageUrl,
+    this.avgRating = 0,
+    this.ratingCount = 0,
   });
 }

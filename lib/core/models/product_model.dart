@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import '../entites/product_entity.dart';
 import 'review_model.dart';
 
@@ -9,26 +7,26 @@ class ProductModel {
   final String code;
   final bool isFeatured;
   final num price;
-  final File image;
   String? imageUrl;
   final int expirationsMonthsl;
   final bool isOrganic;
   final int numberOfCalories;
   final int sellingCount;
-  final num avgRating = 0;
-  final num ratingCount = 0;
+  final num avgRating;
+  final num ratingCount;
   final int unitAmount;
   final List<ReviewModel> reviews;
 
   ProductModel({
+    this.ratingCount = 0,
+    this.avgRating = 0,
     required this.reviews,
     required this.name,
     required this.description,
     required this.code,
-    required this.isFeatured,
+    this.isFeatured = false,
     this.sellingCount = 0,
     required this.price,
-    required this.image,
     this.isOrganic = false,
     this.imageUrl,
     required this.expirationsMonthsl,
@@ -47,14 +45,16 @@ class ProductModel {
       description: json['description'],
       sellingCount: json['sellingCount'],
       code: json['code'],
-      isFeatured: json['isFeatFured'],
+      isFeatured: json['isFeatured'],
+
       price: json['price'],
       imageUrl: json['imageUrl'],
       expirationsMonthsl: json['expirationsMonthsl'],
       isOrganic: json['isOrganic'],
       numberOfCalories: json['numberOfCalories'],
       unitAmount: json['unitAmount'],
-      image: File(json['image']),
+      avgRating: 0,
+      ratingCount: json['ratingCount'],
     );
   }
   ProductEntity toEntity() {
@@ -70,7 +70,8 @@ class ProductModel {
       isOrganic: isOrganic,
       numberOfCalories: numberOfCalories,
       unitAmount: unitAmount,
-      image: image,
+      avgRating: avgRating,
+      ratingCount: ratingCount,
     );
   }
 
@@ -82,7 +83,7 @@ class ProductModel {
       'code': code,
       'isFeatured': isFeatured,
       'price': price,
-
+      'sellingCount': sellingCount,
       'imageUrl': imageUrl,
       'expirationsMonthsl': expirationsMonthsl,
       'isOrganic': isOrganic,
