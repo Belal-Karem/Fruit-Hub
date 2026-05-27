@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/cubits/products_cubit/products_cubit.dart';
+import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/Products_grid_view_bloc_builder.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/product_view_header.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/search_text_field.dart';
-import 'custom_home_app_bar.dart';
 
 class ProductsViewBody extends StatefulWidget {
   const ProductsViewBody({super.key});
@@ -31,7 +31,11 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
             child: Column(
               children: [
                 const SizedBox(height: kTopPadding),
-                const CustomHomeAppBar(),
+                buildAppBar(
+                  context: context,
+                  title: 'المنتجات',
+                  showBackButton: false,
+                ),
                 const SizedBox(height: 16),
                 const SearchTexField(),
                 const SizedBox(height: 12),
