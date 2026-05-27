@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/features/home/presentation/views/products_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/custom_botton_navigation_bar.dart';
@@ -18,7 +16,6 @@ class _MainViewState extends State<MainView> {
   int currentViewIndex = 0;
   @override
   Widget build(BuildContext context) {
-    log('currentViewIndex: $currentViewIndex');
     return Scaffold(
       bottomNavigationBar: CustomBottonNavigationBar(
         onItemTapped: (index) {

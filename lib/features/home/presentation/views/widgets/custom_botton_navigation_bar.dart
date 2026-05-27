@@ -48,7 +48,6 @@ class _CustomBottonNavigationBarState extends State<CustomBottonNavigationBar> {
                   isSelectedIndex = index;
                   widget.onItemTapped(index);
                 });
-                Navigator.pushNamed(context, entity.routeName);
               },
               child: NavigationBarItem(
                 isSelected: isSelectedIndex == index,
