@@ -7,6 +7,7 @@ AppBar buildAppBar({
   required BuildContext context,
   required String title,
   bool showBackButton = true,
+  bool showNotification = true,
 }) {
   return AppBar(
     automaticallyImplyLeading: false,
@@ -32,9 +33,12 @@ AppBar buildAppBar({
     title: Text(title, style: AppTextStyle.bold19),
     centerTitle: true,
     actions: [
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: NotificationWidget(),
+      Visibility(
+        visible: showNotification,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: NotificationWidget(),
+        ),
       ),
     ],
   );
