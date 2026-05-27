@@ -5,17 +5,17 @@ import 'package:fruit_hub/core/helper_functions/get_dummy_product.dart';
 import 'package:fruit_hub/core/widgets/custom_error_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'best_selling_grid_view.dart';
+import 'Products_grid_view.dart';
 
-class BestSellingGridViewBlocBuilder extends StatelessWidget {
-  const BestSellingGridViewBlocBuilder({super.key});
+class ProductsGridViewBlocBuilder extends StatelessWidget {
+  const ProductsGridViewBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
         if (state is ProductsSuccess) {
-          return BestSellingGridView(products: state.products);
+          return ProductsgGridView(products: state.products);
         } else if (state is ProductsFailure) {
           return SliverToBoxAdapter(
             child: CustomErrorWidget(text: state.message),
@@ -23,7 +23,7 @@ class BestSellingGridViewBlocBuilder extends StatelessWidget {
         } else {
           return Skeletonizer.sliver(
             enabled: true,
-            child: BestSellingGridView(products: getDummyProductList),
+            child: ProductsgGridView(products: getDummyProductList),
           );
         }
       },
