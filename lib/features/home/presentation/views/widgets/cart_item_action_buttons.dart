@@ -3,7 +3,9 @@ import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 
 class CartItemActionButtons extends StatelessWidget {
-  const CartItemActionButtons({super.key});
+  const CartItemActionButtons({super.key, required this.count});
+
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class CartItemActionButtons extends StatelessWidget {
           onPressed: () {},
         ),
         const SizedBox(width: 16),
-        Text('3', textAlign: TextAlign.center, style: AppTextStyle.bold16),
+        Text('$count', textAlign: TextAlign.center, style: AppTextStyle.bold16),
         const SizedBox(width: 16),
         CartCAtionButton(
           icon: Icons.remove,
