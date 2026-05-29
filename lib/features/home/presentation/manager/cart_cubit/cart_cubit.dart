@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fruit_hub/core/entites/product_entity.dart';
 import 'package:fruit_hub/features/home/domain/entites/cart_entity.dart';
 import 'package:meta/meta.dart';
 
@@ -10,8 +11,17 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
   CartEntity cartEntity = CartEntity(cartItems: []);
-  void addCartItem(CartItemEntity cartItemEntity) {
-    cartEntity.addCartItem(cartItemEntity);
+  void addCartItem(ProductEntity productEntity) {
+    bool isproductExist = cartEntity.isExist(productEntity);
+    if (isproductExist) {
+    } else {
+      CartItemEntity cartItemEntity = CartItemEntity(
+        productEntity: productEntity,
+        count: 1,
+      );
+      cartEntity.addCartItem(cartItemEntity);
+    }
+
     emit(CartItemadded());
   }
 }
