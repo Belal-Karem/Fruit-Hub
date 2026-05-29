@@ -5,7 +5,7 @@ import 'package:fruit_hub/features/auth/presentation/views/widgets/login_view_bo
 
 import '../../../../core/services/get_it_service.dart';
 import '../../domain/repos/auth_repo.dart';
-import '../manger/login_cubit/signin_cubit.dart';
+import '../manager/login_cubit/signin_cubit.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

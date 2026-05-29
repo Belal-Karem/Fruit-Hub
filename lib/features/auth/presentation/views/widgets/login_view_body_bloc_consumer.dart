@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:fruit_hub/features/home/presentation/views/main_view.dart';
 import '../../../../../core/widgets/custom_modal_progress_hud.dart';
-import '../../manger/login_cubit/signin_cubit.dart';
+import '../../manager/login_cubit/signin_cubit.dart';
 import 'login_view_body.dart';
 
 class LoginViewBodyBlocConsumer extends StatelessWidget {
