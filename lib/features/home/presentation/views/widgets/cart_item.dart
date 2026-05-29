@@ -60,7 +60,7 @@ class CartItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    CartItemActionButtons(count: cartItemEntity.count),
+                    CartItemActionButtons(cartItemEntity: cartItemEntity),
                     const Spacer(),
                     Text(
                       '${cartItemEntity.calculatedtotalPrice()} جنيه',
