@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
 import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
@@ -6,6 +7,8 @@ import 'package:fruit_hub/core/widgets/custom_network_image.dart';
 import 'package:fruit_hub/features/home/domain/entites/cart_item_entity.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item_action_buttons.dart';
 import 'package:svg_flutter/svg.dart';
+
+import '../../manager/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({super.key, required this.cartItemEntity});
@@ -39,7 +42,11 @@ class CartItem extends StatelessWidget {
                     ),
                     const Spacer(),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.read<CartCubit>().deleteCartItem(
+                          cartItemEntity,
+                        );
+                      },
                       child: SvgPicture.asset(Assets.imagesTrashIcon),
                     ),
                   ],

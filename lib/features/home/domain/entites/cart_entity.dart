@@ -35,4 +35,8 @@ class CartEntity {
     }
     return totalPrice;
   }
+
+  removeCartItem(CartItemEntity cartItemEntity) {
+    cartItems.remove(cartItemEntity);
+  }
 }
