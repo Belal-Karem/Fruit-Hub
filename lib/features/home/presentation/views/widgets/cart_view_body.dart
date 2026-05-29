@@ -52,7 +52,11 @@ class CartViewBody extends StatelessWidget {
           bottom: MediaQuery.sizeOf(context).height * 0.05,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-            child: CustomButton(text: 'الدفع  120جنيه', onPressed: () {}),
+            child: CustomButton(
+              text:
+                  'الدفع  ${context.watch<CartCubit>().cartEntity.calculatedTotalPrice()}جنيه',
+              onPressed: () {},
+            ),
           ),
         ),
       ],
