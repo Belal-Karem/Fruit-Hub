@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'package:fruit_hub/features/home/presentation/views/cart_view.dart';
-import 'package:fruit_hub/features/home/presentation/views/products_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/custom_botton_navigation_bar.dart';
-import 'package:fruit_hub/features/home/presentation/views/widgets/home_view.dart';
+import 'package:fruit_hub/features/home/presentation/views/widgets/main_view_body_bloc_listener.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -28,22 +26,10 @@ class _MainViewState extends State<MainView> {
             setState(() {});
           },
         ),
-        body: SafeArea(child: MainViewBody(currentViewIndex: currentViewIndex)),
+        body: SafeArea(
+          child: MainViewBodyBlocListener(currentViewIndex: currentViewIndex),
+        ),
       ),
-    );
-  }
-}
-
-class MainViewBody extends StatelessWidget {
-  const MainViewBody({super.key, required this.currentViewIndex});
-
-  final int currentViewIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return IndexedStack(
-      index: currentViewIndex,
-      children: const [HomeView(), ProductsView(), CartView()],
     );
   }
 }
