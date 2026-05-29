@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
+import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/custom_network_image.dart';
+import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item_action_buttons.dart';
 import 'package:svg_flutter/svg.dart';
 
 class CartItem extends StatelessWidget {
@@ -21,13 +23,36 @@ class CartItem extends StatelessWidget {
           SizedBox(width: 17),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
                     Text('بطيخ', style: AppTextStyle.bold13),
                     const Spacer(),
-                    SvgPicture.asset(Assets.imagesTrashIcon),
+                    GestureDetector(
+                      onTap: () {},
+                      child: SvgPicture.asset(Assets.imagesTrashIcon),
+                    ),
+                  ],
+                ),
+                Text(
+                  '3 كم',
+                  textAlign: TextAlign.right,
+                  style: AppTextStyle.regular13.copyWith(
+                    color: AppColor.secondaryColor,
+                  ),
+                ),
+                Row(
+                  children: [
+                    CartItemActionButtons(),
+                    const Spacer(),
+                    Text(
+                      '60 جنيه',
+                      style: AppTextStyle.bold16.copyWith(
+                        color: AppColor.secondaryColor,
+                      ),
+                    ),
                   ],
                 ),
               ],
