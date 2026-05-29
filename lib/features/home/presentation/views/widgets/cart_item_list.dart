@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/features/home/domain/entites/cart_item_entity.dart';
-import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item.dart';
+import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item_bloc_builder.dart';
 
 import '../../../../../constants.dart';
 
@@ -17,7 +17,7 @@ class CartItemList extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-          child: CartItem(cartItemEntity: cartItems[0]),
+          child: CartItemBlocBuilder(cartItemEntity: cartItems[index]),
         );
       },
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/cart_header.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item_list.dart';
+import 'package:fruit_hub/features/home/presentation/views/widgets/custom_cart_button.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/build_app_bar.dart';
@@ -13,6 +13,7 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isEmpty = context.read<CartCubit>().cartEntity.cartItems.isEmpty;
     return Stack(
       children: [
         CustomScrollView(
@@ -34,17 +35,13 @@ class CartViewBody extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
-                  ? const SizedBox()
-                  : CustomDivider(),
+              child: isEmpty ? const SizedBox() : CustomDivider(),
             ),
             CartItemList(
-              cartItems: context.read<CartCubit>().cartEntity.cartItems,
+              cartItems: context.watch<CartCubit>().cartEntity.cartItems,
             ),
             SliverToBoxAdapter(
-              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
-                  ? const SizedBox()
-                  : CustomDivider(),
+              child: isEmpty ? const SizedBox() : CustomDivider(),
             ),
           ],
         ),
@@ -54,11 +51,7 @@ class CartViewBody extends StatelessWidget {
           bottom: MediaQuery.sizeOf(context).height * 0.05,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-            child: CustomButton(
-              text:
-                  'الدفع  ${context.watch<CartCubit>().cartEntity.calculatedTotalPrice()}جنيه',
-              onPressed: () {},
-            ),
+            child: Visibility(visible: !isEmpty, child: CustomCartButton()),
           ),
         ),
       ],
