@@ -74,6 +74,10 @@ class Assets {
   /// assets/images/setting_format.svg
   static const String imagesSettingFormat = "assets/images/setting_format.svg";
 
+  /// Assets for imagesTrashIcon
+  /// assets/images/trash_icon.svg
+  static const String imagesTrashIcon = "assets/images/trash_icon.svg";
+
   /// Assets for imagesVuesaxBoldHome
   /// assets/images/vuesax/bold/home.svg
   static const String imagesVuesaxBoldHome = "assets/images/vuesax/bold/home.svg";
