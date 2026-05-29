@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/features/home/presentation/manager/cart_item/cart_item_cubit.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/cart_view_body.dart';
 
 class CartView extends StatelessWidget {
@@ -6,6 +8,11 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: const CartViewBody());
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) => CartItemCubit(),
+        child: const CartViewBody(),
+      ),
+    );
   }
 }
