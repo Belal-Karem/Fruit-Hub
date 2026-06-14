@@ -16,7 +16,7 @@ class ActiveStepItem extends StatelessWidget {
             color: AppColor.primaryColor,
             shape: OvalBorder(),
           ),
-          child: Icon(Icons.check, color: Colors.white, size: 14),
+          child: Icon(Icons.check, color: Colors.white, size: 18),
         ),
         const SizedBox(width: 4),
         Text(
