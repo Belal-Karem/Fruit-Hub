@@ -3,11 +3,14 @@ import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 
 class ActiveStepItem extends StatelessWidget {
-  const ActiveStepItem({super.key});
+  const ActiveStepItem({super.key, required this.text});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           width: 23,

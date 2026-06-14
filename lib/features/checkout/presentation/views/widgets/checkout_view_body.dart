@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hub/features/checkout/presentation/views/widgets/active_step_item.dart';
-import 'package:fruit_hub/features/checkout/presentation/views/widgets/in_active_step_item.dart';
+import 'package:fruit_hub/constants.dart';
+import 'package:fruit_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 
 class CheckoutViewBody extends StatelessWidget {
   const CheckoutViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [ActiveStepItem(), InActiveStepItem()]);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      child: Column(children: [const SizedBox(height: 16), CheckoutSteps()]),
+    );
   }
 }
