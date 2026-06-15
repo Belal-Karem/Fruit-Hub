@@ -32,7 +32,7 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: const Color(0xFFF9FAFA),
         suffixIcon: suffixIcon,
         hintText: hintText,
-        hintStyle: AppTextStyle.bold13,
+        hintStyle: AppTextStyle.bold13.copyWith(color: const Color(0xFF949D9E)),
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(),
