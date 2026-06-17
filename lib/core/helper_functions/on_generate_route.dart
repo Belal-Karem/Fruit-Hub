@@ -8,6 +8,8 @@ import 'package:fruit_hub/features/home/presentation/views/products_view.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_view.dart';
 
+import '../../features/home/domain/entites/cart_item_entity.dart';
+
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case SplashView.routeName:
@@ -25,7 +27,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case ProductsView.routeName:
       return MaterialPageRoute(builder: (context) => const ProductsView());
     case CheckoutView.routeName:
-      return MaterialPageRoute(builder: (context) => const CheckoutView());
+      return MaterialPageRoute(
+        builder: (context) =>
+            CheckoutView(cartItems: settings.arguments as List<CartItemEntity>),
+      );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
