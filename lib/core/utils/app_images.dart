@@ -26,6 +26,10 @@ class Assets {
   /// assets/images/Circles.svg
   static const String imagesCircles = "assets/images/Circles.svg";
 
+  /// Assets for imagesEditChange
+  /// assets/images/edit_change.svg
+  static const String imagesEditChange = "assets/images/edit_change.svg";
+
   /// Assets for imagesFacebookIcon
   /// assets/images/facebook_icon.svg
   static const String imagesFacebookIcon = "assets/images/facebook_icon.svg";
@@ -37,6 +41,10 @@ class Assets {
   /// Assets for imagesGoogleIcon
   /// assets/images/google_icon.svg
   static const String imagesGoogleIcon = "assets/images/google_icon.svg";
+
+  /// Assets for imagesLocationIcon
+  /// assets/images/location_icon.svg
+  static const String imagesLocationIcon = "assets/images/location_icon.svg";
 
   /// Assets for imagesLogo
   /// assets/images/Logo.svg
@@ -65,10 +73,6 @@ class Assets {
   /// Assets for imagesPageViewItem2Image
   /// assets/images/page_view_item2_Image.svg
   static const String imagesPageViewItem2Image = "assets/images/page_view_item2_Image.svg";
-
-  /// Assets for imagesPaymentMethodChange
-  /// assets/images/Payment_method_change.svg
-  static const String imagesPaymentMethodChange = "assets/images/Payment_method_change.svg";
 
   /// Assets for imagesPaypal
   /// assets/images/Paypal.svg
