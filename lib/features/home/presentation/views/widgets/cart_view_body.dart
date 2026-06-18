@@ -7,6 +7,7 @@ import 'package:fruit_hub/features/home/presentation/views/widgets/custom_cart_b
 
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/build_app_bar.dart';
+import '../../../../checkout/presentation/views/checkout_view.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -51,7 +52,20 @@ class CartViewBody extends StatelessWidget {
           bottom: MediaQuery.sizeOf(context).height * 0.05,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-            child: Visibility(visible: !isEmpty, child: CustomCartButton()),
+            child: Visibility(
+              visible: !isEmpty,
+              child: CustomCartButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    CheckoutView.routeName,
+                    arguments: context.read<CartCubit>().cartEntity,
+                  );
+                },
+                text:
+                    'الدفع  ${context.watch<CartCubit>().cartEntity.calculatedTotalPrice()}جنيه',
+              ),
+            ),
           ),
         ),
       ],
