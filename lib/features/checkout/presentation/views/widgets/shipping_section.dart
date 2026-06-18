@@ -15,37 +15,34 @@ class _ShippingSectionState extends State<ShippingSection> {
 
   @override
   Widget build(BuildContext context) {
+    var orderEntity = context.read<OrderEntity>();
     return Column(
       children: [
         ShippingItem(
           onTap: () {
             setState(() {
               isSelectedIndex = 1;
+              orderEntity.payWithCash = true;
             });
           },
           isSelected: isSelectedIndex == 1,
           title: 'الدفع عند الاستلام',
           subtitle: 'التسليم من المكان',
-          price:
-              (context.read<OrderEntity>().cartEntity.calculatedTotalPrice() +
-                      40)
-                  .toString(),
+          price: (orderEntity.cartEntity.calculatedTotalPrice() + 40)
+              .toString(),
         ),
         const SizedBox(height: 8),
         ShippingItem(
           onTap: () {
             setState(() {
               isSelectedIndex = 2;
+              orderEntity.payWithCash = false;
             });
           },
           isSelected: isSelectedIndex == 2,
           title: 'الدفع اونلاين',
           subtitle: 'يرجي تحديد طريقه الدفع',
-          price: context
-              .read<OrderEntity>()
-              .cartEntity
-              .calculatedTotalPrice()
-              .toString(),
+          price: orderEntity.cartEntity.calculatedTotalPrice().toString(),
         ),
       ],
     );
