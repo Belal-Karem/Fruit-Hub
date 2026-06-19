@@ -17,6 +17,8 @@ class CheckoutViewBody extends StatefulWidget {
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
   final GlobalKey<FormState> formKey = GlobalKey();
+  ValueNotifier<AutovalidateMode> autovalidateMode =
+      ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
   int currentPageindex = 0;
 
   @override
@@ -32,6 +34,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    autovalidateMode.dispose();
     super.dispose();
   }
 
@@ -48,6 +51,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           ),
           Expanded(
             child: CheckoutStepsPageView(
+              valueListenable: autovalidateMode,
               formKey: formKey,
               pageController: pageController,
             ),
@@ -55,14 +59,10 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           CustomButton(
             text: getNextButtonText(currentPageindex),
             onPressed: () {
-              if (context.read<OrderEntity>().payWithCash != null) {
-                pageController.animateToPage(
-                  currentPageindex + 1,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
-              } else {
-                showErrorBar(context, 'اختر طريقة الدفع');
+              if (currentPageindex == 0) {
+                handleShippingSecionValidation(context);
+              } else if (currentPageindex == 1) {
+                handleAddressSecionValidation();
               }
             },
           ),
@@ -70,6 +70,31 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void handleAddressSecionValidation() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      pageController.animateToPage(
+        currentPageindex + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      autovalidateMode.value = AutovalidateMode.always;
+    }
+  }
+
+  void handleShippingSecionValidation(BuildContext context) {
+    if (context.read<OrderEntity>().payWithCash != null) {
+      pageController.animateToPage(
+        currentPageindex + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      showErrorBar(context, 'اختر طريقة الدفع');
+    }
   }
 
   String getNextButtonText(int currentPageIndex) {
