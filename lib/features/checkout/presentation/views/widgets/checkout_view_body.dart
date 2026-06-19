@@ -16,6 +16,7 @@ class CheckoutViewBody extends StatefulWidget {
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
+  final GlobalKey<FormState> formKey = GlobalKey();
   int currentPageindex = 0;
 
   @override
@@ -46,7 +47,10 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             pageController: pageController,
           ),
           Expanded(
-            child: CheckoutStepsPageView(pageController: pageController),
+            child: CheckoutStepsPageView(
+              formKey: formKey,
+              pageController: pageController,
+            ),
           ),
           CustomButton(
             text: getNextButtonText(currentPageindex),
