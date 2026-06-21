@@ -12,7 +12,7 @@ class ShippingSection extends StatefulWidget {
 
 class _ShippingSectionState extends State<ShippingSection>
     with AutomaticKeepAliveClientMixin {
-  int isSelectedIndex = -1;
+  int isSelectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
