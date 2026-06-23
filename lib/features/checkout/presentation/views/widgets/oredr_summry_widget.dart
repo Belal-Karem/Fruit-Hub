@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
+import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/order_review_Item.dart';
 
 class OrderSummryWidget extends StatelessWidget {
@@ -7,6 +9,10 @@ class OrderSummryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var totalPrice = context
+        .read<OrderEntity>()
+        .cartEntity
+        .calculatedTotalPrice();
     return OrderReviewItem(
       title: 'ملخص الطلب :',
       child: Column(
@@ -21,7 +27,7 @@ class OrderSummryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '150 جنيه',
+                '$totalPrice جنيه',
                 textAlign: TextAlign.right,
                 style: AppTextStyle.semiBold16,
               ),
@@ -61,7 +67,7 @@ class OrderSummryWidget extends StatelessWidget {
             children: [
               Text('الكلي', style: AppTextStyle.bold16),
               const Spacer(),
-              Text('180 جنيه', style: AppTextStyle.bold16),
+              Text('${totalPrice + 30} جنيه', style: AppTextStyle.bold16),
             ],
           ),
         ],

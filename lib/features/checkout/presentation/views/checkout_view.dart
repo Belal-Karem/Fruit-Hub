@@ -19,8 +19,14 @@ class CheckoutView extends StatelessWidget {
         title: 'الشحن',
         showNotification: false,
       ),
-      body: Provider.value(
-        value: OrderEntity(cartEntity),
+      body: MultiProvider(
+        providers: [
+          Provider.value(value: OrderEntity(cartEntity)),
+          ListenableProvider<PageController>(
+            create: (context) => PageController(),
+            dispose: (context, controller) => controller.dispose(),
+          ),
+        ],
         child: CheckoutViewBody(),
       ),
     );

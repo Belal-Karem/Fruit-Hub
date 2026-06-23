@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/addres_input_section.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/order_review_section.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/shipping_section.dart';
@@ -7,12 +8,10 @@ import 'package:fruit_hub/features/checkout/presentation/views/widgets/shipping_
 class CheckoutStepsPageView extends StatelessWidget {
   const CheckoutStepsPageView({
     super.key,
-    required this.pageController,
     required this.formKey,
     required this.valueListenable,
   });
 
-  final PageController pageController;
   final GlobalKey<FormState> formKey;
   final ValueListenable<AutovalidateMode> valueListenable;
 
@@ -21,7 +20,7 @@ class CheckoutStepsPageView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32),
       child: PageView.builder(
-        controller: pageController,
+        controller: context.read<PageController>(),
         physics: const NeverScrollableScrollPhysics(),
         itemCount: getPage().length,
         itemBuilder: (context, index) {

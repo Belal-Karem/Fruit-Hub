@@ -5,14 +5,9 @@ import '../../../domain/entites/order_entity.dart';
 import 'step_item.dart';
 
 class CheckoutSteps extends StatelessWidget {
-  const CheckoutSteps({
-    super.key,
-    required this.currentPageIndex,
-    required this.pageController,
-  });
+  const CheckoutSteps({super.key, required this.currentPageIndex});
 
   final int currentPageIndex;
-  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +17,7 @@ class CheckoutSteps extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               if (context.read<OrderEntity>().payWithCash != null) {
-                pageController.animateToPage(
+                context.read<PageController>().animateToPage(
                   index,
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeIn,

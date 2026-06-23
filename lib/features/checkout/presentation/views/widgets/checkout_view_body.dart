@@ -24,7 +24,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController();
+    pageController = context.read<PageController>();
     pageController.addListener(() {
       currentPageindex = pageController.page!.round();
       setState(() {});
@@ -45,15 +45,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           const SizedBox(height: 16),
-          CheckoutSteps(
-            currentPageIndex: currentPageindex,
-            pageController: pageController,
-          ),
+          CheckoutSteps(currentPageIndex: currentPageindex),
           Expanded(
             child: CheckoutStepsPageView(
               valueListenable: autovalidateMode,
               formKey: formKey,
-              pageController: pageController,
             ),
           ),
           CustomButton(
