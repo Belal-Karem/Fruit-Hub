@@ -32,13 +32,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   @override
-  void dispose() {
-    pageController.dispose();
-    autovalidateMode.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),

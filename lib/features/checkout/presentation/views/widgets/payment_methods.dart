@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
@@ -18,11 +16,14 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
-  int? activeIndex = 2;
+  int? activeIndex;
+
   @override
   Widget build(BuildContext context) {
     var payWithCash = context.watch<OrderEntity>();
-    log('=========${payWithCash.payWithCash}');
+    if (payWithCash.payWithCash!) {
+      activeIndex = 4;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(getPaymentMethods().length, (index) {
@@ -31,12 +32,13 @@ class _PaymentMethodsState extends State<PaymentMethods> {
             setState(() {
               activeIndex = index;
               widget.onChange(index);
+              payWithCash.payWithCash = index == 4;
               activeIndex == 4
                   ? payWithCash.payWithCash = true
                   : payWithCash.payWithCash = false;
             });
           },
-          child: activeIndex == 2
+          child: activeIndex == index
               ? ActivePaymentMethod(imagePath: getPaymentMethods()[index])
               : InActivePaymentMethod(imagePath: getPaymentMethods()[index]),
         );
