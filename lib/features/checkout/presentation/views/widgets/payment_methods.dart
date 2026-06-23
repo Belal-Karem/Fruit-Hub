@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
@@ -16,10 +18,11 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
-  int? activeIndex;
+  int? activeIndex = 2;
   @override
   Widget build(BuildContext context) {
-    var payWithCash = context.watch<OrderEntity>().payWithCash;
+    var payWithCash = context.watch<OrderEntity>();
+    log('=========${payWithCash.payWithCash}');
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(getPaymentMethods().length, (index) {
@@ -28,13 +31,13 @@ class _PaymentMethodsState extends State<PaymentMethods> {
             setState(() {
               activeIndex = index;
               widget.onChange(index);
-              context.read<OrderEntity>().payWithCash = false;
+              activeIndex == 4
+                  ? payWithCash.payWithCash = true
+                  : payWithCash.payWithCash = false;
             });
           },
-          child: activeIndex == index
+          child: activeIndex == 2
               ? ActivePaymentMethod(imagePath: getPaymentMethods()[index])
-              : payWithCash == true
-              ? InActivePaymentMethod(imagePath: getPaymentMethods()[index])
               : InActivePaymentMethod(imagePath: getPaymentMethods()[index]),
         );
       }),
@@ -47,4 +50,5 @@ List<String> getPaymentMethods() => [
   Assets.imagesPaypal,
   Assets.imagesMastercard,
   Assets.imagesVisa,
+  Assets.imagesCashPayment,
 ];

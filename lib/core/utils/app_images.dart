@@ -22,6 +22,10 @@ class Assets {
   /// assets/images/arrow_swap_horizontal_icon.svg
   static const String imagesArrowSwapHorizontalIcon = "assets/images/arrow_swap_horizontal_icon.svg";
 
+  /// Assets for imagesCashPayment
+  /// assets/images/cash_payment.svg
+  static const String imagesCashPayment = "assets/images/cash_payment.svg";
+
   /// Assets for imagesCircles
   /// assets/images/Circles.svg
   static const String imagesCircles = "assets/images/Circles.svg";
