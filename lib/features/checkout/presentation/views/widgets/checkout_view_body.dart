@@ -3,6 +3,7 @@ import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
+import 'package:fruit_hub/features/checkout/presentation/manager/order_cubit/add_order_cubit.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:provider/provider.dart';
 import 'checkout_steps_page_view.dart';
@@ -52,6 +53,9 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 handleShippingSecionValidation(context);
               } else if (currentPageindex == 1) {
                 handleAddressSecionValidation();
+              } else {
+                var orderEntity = context.read<OrderEntity>();
+                context.read<AddOrderCubit>().addOrder(orderEntity);
               }
             },
           ),

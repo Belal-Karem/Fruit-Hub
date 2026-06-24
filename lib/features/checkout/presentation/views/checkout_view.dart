@@ -5,7 +5,8 @@ import 'package:fruit_hub/core/repo/order_repo/order_repo.dart';
 import 'package:fruit_hub/core/services/get_it_service.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
-import 'package:fruit_hub/features/checkout/presentation/manager/order_cubit/order_cubit.dart';
+import 'package:fruit_hub/features/checkout/presentation/manager/order_cubit/add_order_cubit.dart';
+import 'package:fruit_hub/features/checkout/presentation/views/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:fruit_hub/features/home/domain/entites/cart_entity.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,7 @@ class CheckoutView extends StatelessWidget {
               dispose: (context, controller) => controller.dispose(),
             ),
           ],
-          child: CheckoutViewBody(),
+          child: const AddOrderCubitBlocBuilder(child: CheckoutViewBody()),
         ),
       ),
     );
