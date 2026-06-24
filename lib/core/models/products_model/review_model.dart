@@ -1,4 +1,4 @@
-import '../entites/review_entite.dart';
+import '../../entites/review_entite.dart';
 
 class ReviewModel {
   final String name;

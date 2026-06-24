@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub/core/entites/product_entity.dart';
 import 'package:fruit_hub/core/error/failures.dart';
-import 'package:fruit_hub/core/models/product_model.dart';
-import 'package:fruit_hub/core/repo/products_repo.dart';
+import 'package:fruit_hub/core/models/products_model/product_model.dart';
+import 'package:fruit_hub/core/repo/prodcts_repo/products_repo.dart';
 import 'package:fruit_hub/core/services/data_base_service.dart';
 import 'package:fruit_hub/core/utils/backend_endpoint.dart';
 
-import '../error/exception.dart';
+import '../../error/exception.dart';
 
 class ProductsRepoImpl extends ProductsRepo {
   final DataBaseService dataBaseService;

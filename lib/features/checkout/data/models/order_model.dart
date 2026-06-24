@@ -31,7 +31,7 @@ class OrderModel {
     );
   }
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
     'totalPrice': totalPrice,
     'uId': uId,
     'paymentMethod': paymentMethod,

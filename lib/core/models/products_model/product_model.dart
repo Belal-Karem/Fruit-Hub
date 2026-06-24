@@ -1,4 +1,4 @@
-import '../entites/product_entity.dart';
+import '../../entites/product_entity.dart';
 import 'review_model.dart';
 
 class ProductModel {
