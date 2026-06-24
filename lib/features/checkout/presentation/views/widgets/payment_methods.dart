@@ -7,9 +7,7 @@ import '../../../domain/entites/order_entity.dart';
 import 'active_payment_method.dart';
 
 class PaymentMethods extends StatefulWidget {
-  const PaymentMethods({super.key, required this.onChange});
-
-  final Function(int) onChange;
+  const PaymentMethods({super.key});
 
   @override
   State<PaymentMethods> createState() => _PaymentMethodsState();
@@ -24,14 +22,19 @@ class _PaymentMethodsState extends State<PaymentMethods> {
     if (payWithCash.payWithCash!) {
       activeIndex = 4;
     }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(getPaymentMethods().length, (index) {
+        if (activeIndex == index) {
+          context.read<OrderEntity>().paymentMethod =
+              getPaymentMethods()[activeIndex!]['name'];
+        }
         return GestureDetector(
           onTap: () {
             setState(() {
               activeIndex = index;
-              widget.onChange(index);
+
               payWithCash.payWithCash = index == 4;
               activeIndex == 4
                   ? payWithCash.payWithCash = true
@@ -39,18 +42,22 @@ class _PaymentMethodsState extends State<PaymentMethods> {
             });
           },
           child: activeIndex == index
-              ? ActivePaymentMethod(imagePath: getPaymentMethods()[index])
-              : InActivePaymentMethod(imagePath: getPaymentMethods()[index]),
+              ? ActivePaymentMethod(
+                  imagePath: getPaymentMethods()[index]['imagePath'],
+                )
+              : InActivePaymentMethod(
+                  imagePath: getPaymentMethods()[index]['imagePath'],
+                ),
         );
       }),
     );
   }
 }
 
-List<String> getPaymentMethods() => [
-  Assets.imagesApplePay,
-  Assets.imagesPaypal,
-  Assets.imagesMastercard,
-  Assets.imagesVisa,
-  Assets.imagesCashPayment,
+List<Map<String, dynamic>> getPaymentMethods() => [
+  {'imagePath': Assets.imagesApplePay, 'name': 'Apple Pay'},
+  {'imagePath': Assets.imagesPaypal, 'name': 'Paypal'},
+  {'imagePath': Assets.imagesMastercard, 'name': 'Mastercard'},
+  {'imagePath': Assets.imagesVisa, 'name': 'Visa'},
+  {'imagePath': Assets.imagesCashPayment, 'name': 'Cash Payment'},
 ];

@@ -14,7 +14,7 @@ class OrderReviewsection extends StatelessWidget {
       children: [
         Text('أختار طريقه الدفع المناسبه :', style: AppTextStyle.bold13),
         const SizedBox(height: 13),
-        PaymentMethods(onChange: (index) {}),
+        PaymentMethods(),
         const SizedBox(height: 16),
         OrderSummryWidget(),
         const SizedBox(height: 16),
