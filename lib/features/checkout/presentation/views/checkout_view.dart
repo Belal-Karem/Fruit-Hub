@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/core/helper_functions/get_user.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
@@ -21,7 +22,9 @@ class CheckoutView extends StatelessWidget {
       ),
       body: MultiProvider(
         providers: [
-          Provider.value(value: OrderEntity(cartEntity)),
+          Provider.value(
+            value: OrderEntity(uId: getUserData().uId!, cartEntity),
+          ),
           ListenableProvider<PageController>(
             create: (context) => PageController(),
             dispose: (context, controller) => controller.dispose(),
