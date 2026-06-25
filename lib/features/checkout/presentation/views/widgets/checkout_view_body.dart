@@ -44,7 +44,30 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           const SizedBox(height: 16),
-          CheckoutSteps(currentPageIndex: currentPageindex),
+          CheckoutSteps(
+            currentPageIndex: currentPageindex,
+            onTap: (index) {
+              if (index == 0) {
+                context.read<PageController>().animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                );
+              } else if (index == 1) {
+                if (context.read<OrderEntity>().payWithCash != null) {
+                  context.read<PageController>().animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn,
+                  );
+                } else {
+                  showErrorBar(context, 'اختر طريقة الدفع');
+                }
+              } else {
+                handleAddressSecionValidation();
+              }
+            },
+          ),
           Expanded(
             child: CheckoutStepsPageView(
               valueListenable: autovalidateMode,
@@ -115,6 +138,7 @@ void processPayment(BuildContext context) {
   PaypalPaymentEntity payment = PaypalPaymentEntity.fromEntity(
     orderEntity: order,
   );
+  var addOrderCubit = context.read<AddOrderCubit>();
   log(payment.toJson().toString());
   Navigator.of(context).push(
     MaterialPageRoute(
@@ -126,8 +150,8 @@ void processPayment(BuildContext context) {
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           log("onSuccess: $params");
-          showErrorBar(context, 'تم اضافة الطلب بنجاح');
           Navigator.pop(context);
+          addOrderCubit.addOrder(order);
         },
         onError: (error) {
           log("onError: $error");

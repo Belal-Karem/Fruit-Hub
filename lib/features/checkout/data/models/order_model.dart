@@ -34,6 +34,8 @@ class OrderModel {
   Map<String, dynamic> toJson() => {
     'totalPrice': totalPrice,
     'uId': uId,
+    'status': 'pending',
+    'date': DateTime.now().toString(),
     'paymentMethod': paymentMethod,
     'shippingAddressModel': shippingAddressModel.toJson(),
     'orderProductModelList': orderProductModelList

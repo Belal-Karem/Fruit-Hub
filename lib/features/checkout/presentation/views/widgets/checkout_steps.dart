@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../domain/entites/order_entity.dart';
 import 'step_item.dart';
 
 class CheckoutSteps extends StatelessWidget {
-  const CheckoutSteps({super.key, required this.currentPageIndex});
+  const CheckoutSteps({
+    super.key,
+    required this.currentPageIndex,
+    required this.onTap,
+  });
 
   final int currentPageIndex;
+  final ValueChanged<int> onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +18,7 @@ class CheckoutSteps extends StatelessWidget {
         return Expanded(
           child: GestureDetector(
             onTap: () {
-              if (context.read<OrderEntity>().payWithCash != null) {
-                context.read<PageController>().animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
-              }
+              onTap(index);
             },
             child: StepItem(
               isActive: index <= currentPageIndex,
