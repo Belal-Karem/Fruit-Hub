@@ -11,11 +11,23 @@ import 'package:fruit_hub/features/checkout/presentation/views/widgets/checkout_
 import 'package:fruit_hub/features/home/domain/entites/cart_entity.dart';
 import 'package:provider/provider.dart';
 
-class CheckoutView extends StatelessWidget {
+class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key, required this.cartEntity});
 
   static const String routeName = 'checkout';
   final CartEntity cartEntity;
+
+  @override
+  State<CheckoutView> createState() => _CheckoutViewState();
+}
+
+class _CheckoutViewState extends State<CheckoutView> {
+  late OrderEntity orderEntity;
+  @override
+  void initState() {
+    super.initState();
+    orderEntity = OrderEntity(uId: getUserData().uId!, widget.cartEntity);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +41,7 @@ class CheckoutView extends StatelessWidget {
         ),
         body: MultiProvider(
           providers: [
-            Provider.value(
-              value: OrderEntity(uId: getUserData().uId!, cartEntity),
-            ),
+            Provider.value(value: orderEntity),
             ListenableProvider<PageController>(
               create: (context) => PageController(),
               dispose: (context, controller) => controller.dispose(),
