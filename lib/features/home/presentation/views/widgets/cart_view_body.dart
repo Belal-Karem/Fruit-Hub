@@ -26,7 +26,7 @@ class CartViewBody extends StatelessWidget {
                   buildAppBar(
                     context: context,
                     title: 'المنتجات',
-                    showBackButton: true,
+                    showBackButton: false,
                     showNotification: false,
                   ),
                   const SizedBox(height: 16),

@@ -2,6 +2,8 @@ import 'package:fruit_hub/features/checkout/data/models/order_product_model.dart
 import 'package:fruit_hub/features/checkout/data/models/shipping_address_model.dart';
 import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
 
+import '../../../../core/helper_functions/generate_order_number.dart';
+
 class OrderModel {
   final double totalPrice;
   final String uId;
@@ -36,6 +38,7 @@ class OrderModel {
     'uId': uId,
     'status': 'pending',
     'date': DateTime.now().toString(),
+    'orderNumber': generateOrderNumber(),
     'paymentMethod': paymentMethod,
     'shippingAddressModel': shippingAddressModel.toJson(),
     'orderProductModelList': orderProductModelList
