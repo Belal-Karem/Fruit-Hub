@@ -20,6 +20,11 @@ class AddOrderCubitBlocBuilder extends StatelessWidget {
       listener: (context, state) {
         if (state is AddOrderSuccess) {
           showErrorBar(context, 'تم اضافة الطلب بنجاح');
+          context.read<PageController>().animateToPage(
+            3,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
         }
       },
     );

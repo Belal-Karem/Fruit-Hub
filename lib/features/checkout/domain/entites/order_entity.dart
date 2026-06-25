@@ -7,9 +7,11 @@ class OrderEntity {
   String? paymentMethod;
   bool? payWithCash;
   ShippingAddressEntity? shippingAddressEntity = ShippingAddressEntity();
+  String? orderNumber;
 
   OrderEntity(
     this.cartEntity, {
+    this.orderNumber,
     this.paymentMethod,
     this.payWithCash,
     required this.uId,

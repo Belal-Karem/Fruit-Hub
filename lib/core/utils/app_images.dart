@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
+  
   /// Assets for imagesAppIcon
   /// assets/images/app_icon.png
   static const String imagesAppIcon = "assets/images/app_icon.png";
@@ -16,13 +16,11 @@ class Assets {
 
   /// Assets for imagesArrowLeftBackIcon
   /// assets/images/arrow_left_back_icon.svg
-  static const String imagesArrowLeftBackIcon =
-      "assets/images/arrow_left_back_icon.svg";
+  static const String imagesArrowLeftBackIcon = "assets/images/arrow_left_back_icon.svg";
 
   /// Assets for imagesArrowSwapHorizontalIcon
   /// assets/images/arrow_swap_horizontal_icon.svg
-  static const String imagesArrowSwapHorizontalIcon =
-      "assets/images/arrow_swap_horizontal_icon.svg";
+  static const String imagesArrowSwapHorizontalIcon = "assets/images/arrow_swap_horizontal_icon.svg";
 
   /// Assets for imagesCashPayment
   /// assets/images/cash_payment.svg
@@ -66,23 +64,19 @@ class Assets {
 
   /// Assets for imagesPageViewItem1BackgroundImage
   /// assets/images/page_view_item1_background_Image.svg
-  static const String imagesPageViewItem1BackgroundImage =
-      "assets/images/page_view_item1_background_Image.svg";
+  static const String imagesPageViewItem1BackgroundImage = "assets/images/page_view_item1_background_Image.svg";
 
   /// Assets for imagesPageViewItem1Image
   /// assets/images/page_view_item1_Image.svg
-  static const String imagesPageViewItem1Image =
-      "assets/images/page_view_item1_Image.svg";
+  static const String imagesPageViewItem1Image = "assets/images/page_view_item1_Image.svg";
 
   /// Assets for imagesPageViewItem2BackgroundImage
   /// assets/images/page_view_item2_background_Image.svg
-  static const String imagesPageViewItem2BackgroundImage =
-      "assets/images/page_view_item2_background_Image.svg";
+  static const String imagesPageViewItem2BackgroundImage = "assets/images/page_view_item2_background_Image.svg";
 
   /// Assets for imagesPageViewItem2Image
   /// assets/images/page_view_item2_Image.svg
-  static const String imagesPageViewItem2Image =
-      "assets/images/page_view_item2_Image.svg";
+  static const String imagesPageViewItem2Image = "assets/images/page_view_item2_Image.svg";
 
   /// Assets for imagesPaypal
   /// assets/images/Paypal.svg
@@ -104,6 +98,10 @@ class Assets {
   /// assets/images/setting_format.svg
   static const String imagesSettingFormat = "assets/images/setting_format.svg";
 
+  /// Assets for imagesSuccessfullOrder
+  /// assets/images/successfull_order.svg
+  static const String imagesSuccessfullOrder = "assets/images/successfull_order.svg";
+
   /// Assets for imagesTrashIcon
   /// assets/images/trash_icon.svg
   static const String imagesTrashIcon = "assets/images/trash_icon.svg";
@@ -114,46 +112,38 @@ class Assets {
 
   /// Assets for imagesVuesaxBoldHome
   /// assets/images/vuesax/bold/home.svg
-  static const String imagesVuesaxBoldHome =
-      "assets/images/vuesax/bold/home.svg";
+  static const String imagesVuesaxBoldHome = "assets/images/vuesax/bold/home.svg";
 
   /// Assets for imagesVuesaxBoldProduct
   /// assets/images/vuesax/bold/product.svg
-  static const String imagesVuesaxBoldProduct =
-      "assets/images/vuesax/bold/product.svg";
+  static const String imagesVuesaxBoldProduct = "assets/images/vuesax/bold/product.svg";
 
   /// Assets for imagesVuesaxBoldShoppingCart
   /// assets/images/vuesax/bold/shopping_cart.svg
-  static const String imagesVuesaxBoldShoppingCart =
-      "assets/images/vuesax/bold/shopping_cart.svg";
+  static const String imagesVuesaxBoldShoppingCart = "assets/images/vuesax/bold/shopping_cart.svg";
 
   /// Assets for imagesVuesaxBoldUser
   /// assets/images/vuesax/bold/user.svg
-  static const String imagesVuesaxBoldUser =
-      "assets/images/vuesax/bold/user.svg";
+  static const String imagesVuesaxBoldUser = "assets/images/vuesax/bold/user.svg";
 
   /// Assets for imagesVuesaxOutlineHome
   /// assets/images/vuesax/outline/home.svg
-  static const String imagesVuesaxOutlineHome =
-      "assets/images/vuesax/outline/home.svg";
+  static const String imagesVuesaxOutlineHome = "assets/images/vuesax/outline/home.svg";
 
   /// Assets for imagesVuesaxOutlineProduct
   /// assets/images/vuesax/outline/product.svg
-  static const String imagesVuesaxOutlineProduct =
-      "assets/images/vuesax/outline/product.svg";
+  static const String imagesVuesaxOutlineProduct = "assets/images/vuesax/outline/product.svg";
 
   /// Assets for imagesVuesaxOutlineShoppingCart
   /// assets/images/vuesax/outline/shopping_cart.svg
-  static const String imagesVuesaxOutlineShoppingCart =
-      "assets/images/vuesax/outline/shopping_cart.svg";
+  static const String imagesVuesaxOutlineShoppingCart = "assets/images/vuesax/outline/shopping_cart.svg";
 
   /// Assets for imagesVuesaxOutlineUser
   /// assets/images/vuesax/outline/user.svg
-  static const String imagesVuesaxOutlineUser =
-      "assets/images/vuesax/outline/user.svg";
+  static const String imagesVuesaxOutlineUser = "assets/images/vuesax/outline/user.svg";
 
   /// Assets for imagesWeatermelonTest
   /// assets/images/weatermelon_test.png
-  static const String imagesWeatermelonTest =
-      "assets/images/weatermelon_test.png";
+  static const String imagesWeatermelonTest = "assets/images/weatermelon_test.png";
 }
+

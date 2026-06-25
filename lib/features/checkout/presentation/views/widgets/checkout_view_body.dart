@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruit_hub/constants.dart';
+import 'package:fruit_hub/core/helper_functions/generate_order_number.dart';
 import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
@@ -44,29 +45,32 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           const SizedBox(height: 16),
-          CheckoutSteps(
-            currentPageIndex: currentPageindex,
-            onTap: (index) {
-              if (index == 0) {
-                context.read<PageController>().animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
-              } else if (index == 1) {
-                if (context.read<OrderEntity>().payWithCash != null) {
+          Visibility(
+            visible: currentPageindex != 3,
+            child: CheckoutSteps(
+              currentPageIndex: currentPageindex,
+              onTap: (index) {
+                if (index == 0) {
                   context.read<PageController>().animateToPage(
                     index,
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeIn,
                   );
+                } else if (index == 1) {
+                  if (context.read<OrderEntity>().payWithCash != null) {
+                    context.read<PageController>().animateToPage(
+                      index,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  } else {
+                    showErrorBar(context, 'اختر طريقة الدفع');
+                  }
                 } else {
-                  showErrorBar(context, 'اختر طريقة الدفع');
+                  handleAddressSecionValidation();
                 }
-              } else {
-                handleAddressSecionValidation();
-              }
-            },
+              },
+            ),
           ),
           Expanded(
             child: CheckoutStepsPageView(
@@ -74,17 +78,29 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               formKey: formKey,
             ),
           ),
-          CustomButton(
-            text: getNextButtonText(currentPageindex),
-            onPressed: () {
-              if (currentPageindex == 0) {
-                handleShippingSecionValidation(context);
-              } else if (currentPageindex == 1) {
-                handleAddressSecionValidation();
-              } else {
-                processPayment(context);
-              }
-            },
+          Visibility(
+            visible: currentPageindex != 3,
+            child: CustomButton(
+              text: getNextButtonText(currentPageindex),
+              onPressed: () {
+                if (currentPageindex == 0) {
+                  handleShippingSecionValidation(context);
+                } else if (currentPageindex == 1) {
+                  handleAddressSecionValidation();
+                } else {
+                  // processPayment(context);
+                  // var orderEntity = context.read<OrderEntity>();
+                  // context.read<AddOrderCubit>().addOrder(orderEntity);
+                  context.read<PageController>().animateToPage(
+                    3,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn,
+                  );
+                  context.read<OrderEntity>().orderNumber =
+                      generateOrderNumber();
+                }
+              },
+            ),
           ),
           const SizedBox(height: 16),
         ],

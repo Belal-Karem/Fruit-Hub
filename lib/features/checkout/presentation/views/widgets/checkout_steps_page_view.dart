@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/addres_input_section.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/order_review_section.dart';
+import 'package:fruit_hub/features/checkout/presentation/views/widgets/order_successfull_section.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/shipping_section.dart';
 
 class CheckoutStepsPageView extends StatelessWidget {
@@ -34,5 +35,6 @@ class CheckoutStepsPageView extends StatelessWidget {
     ShippingSection(),
     AddresInputSection(formKey: formKey, valueListenable: valueListenable),
     OrderReviewsection(),
+    OrderSuccessfullSection(),
   ];
 }
