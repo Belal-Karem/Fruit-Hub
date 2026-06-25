@@ -1,12 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/checkout/domain/entites/order_entity.dart';
+import 'package:fruit_hub/features/checkout/domain/entites/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:fruit_hub/features/checkout/presentation/manager/order_cubit/add_order_cubit.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/utils/app_key.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -107,49 +111,27 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
 }
 
 void processPayment(BuildContext context) {
+  var order = context.read<OrderEntity>();
+  PaypalPaymentEntity payment = PaypalPaymentEntity.fromEntity(
+    orderEntity: order,
+  );
+  log(payment.toJson().toString());
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
-        clientId: "",
-        secretKey: "",
-        transactions: const [
-          {
-            "amount": {
-              "total": '70',
-              "currency": "USD",
-              "details": {
-                "subtotal": '70',
-                "shipping": '0',
-                "shipping_discount": 0,
-              },
-            },
-            "description": "The payment transaction description.",
-
-            "item_list": {
-              "items": [
-                {
-                  "name": "Apple",
-                  "quantity": 4,
-                  "price": '5',
-                  "currency": "USD",
-                },
-                {
-                  "name": "Pineapple",
-                  "quantity": 5,
-                  "price": '10',
-                  "currency": "USD",
-                },
-              ],
-            },
-          },
-        ],
+        clientId: kPaypalClientId,
+        secretKey: kPaypalSecretKey,
+        transactions: [payment.toJson()],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
-          print("onSuccess: $params");
+          log("onSuccess: $params");
+          showErrorBar(context, 'تم اضافة الطلب بنجاح');
+          Navigator.pop(context);
         },
         onError: (error) {
-          print("onError: $error");
+          log("onError: $error");
+          showErrorBar(context, error.toString());
           Navigator.pop(context);
         },
         onCancel: () {
