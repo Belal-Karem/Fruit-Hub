@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
@@ -54,8 +55,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else if (currentPageindex == 1) {
                 handleAddressSecionValidation();
               } else {
-                var orderEntity = context.read<OrderEntity>();
-                context.read<AddOrderCubit>().addOrder(orderEntity);
+                processPayment(context);
               }
             },
           ),
@@ -104,4 +104,58 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         return 'التالي';
     }
   }
+}
+
+void processPayment(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "",
+        secretKey: "",
+        transactions: const [
+          {
+            "amount": {
+              "total": '70',
+              "currency": "USD",
+              "details": {
+                "subtotal": '70',
+                "shipping": '0',
+                "shipping_discount": 0,
+              },
+            },
+            "description": "The payment transaction description.",
+
+            "item_list": {
+              "items": [
+                {
+                  "name": "Apple",
+                  "quantity": 4,
+                  "price": '5',
+                  "currency": "USD",
+                },
+                {
+                  "name": "Pineapple",
+                  "quantity": 5,
+                  "price": '10',
+                  "currency": "USD",
+                },
+              ],
+            },
+          },
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          print("onSuccess: $params");
+        },
+        onError: (error) {
+          print("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          print('cancelled:');
+        },
+      ),
+    ),
+  );
 }
