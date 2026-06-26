@@ -8,77 +8,83 @@ import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cub
 import '../entites/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key, required this.product});
+  const FruitItem({super.key, required this.product, required this.onTap});
 
   final ProductEntity product;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColor.fruitItemColor,
-        borderRadius: BorderRadius.circular(4),
-      ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColor.fruitItemColor,
+          borderRadius: BorderRadius.circular(4),
+        ),
 
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
 
-                product.imageUrl != null
-                    ? Flexible(
-                        child: CustomNetworkImage(imageUrl: product.imageUrl!),
-                      )
-                    : Container(color: Colors.grey, width: 100, height: 100),
-                const SizedBox(height: 24),
-                ListTile(
-                  title: Text(product.name, style: AppTextStyle.semiBold13),
-                  subtitle: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '${product.price} جنيه',
-                          style: AppTextStyle.bold13.copyWith(
-                            color: AppColor.secondaryColor,
+                  product.imageUrl != null
+                      ? Flexible(
+                          child: CustomNetworkImage(
+                            imageUrl: product.imageUrl!,
                           ),
-                        ),
-                        TextSpan(
-                          text: '/',
-                          style: AppTextStyle.semiBold13.copyWith(
-                            color: AppColor.lightSecondaryColor,
+                        )
+                      : Container(color: Colors.grey, width: 100, height: 100),
+                  const SizedBox(height: 24),
+                  ListTile(
+                    title: Text(product.name, style: AppTextStyle.semiBold13),
+                    subtitle: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '${product.price} جنيه',
+                            style: AppTextStyle.bold13.copyWith(
+                              color: AppColor.secondaryColor,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' الكيلو',
-                          style: AppTextStyle.semiBold13.copyWith(
-                            color: AppColor.lightSecondaryColor,
+                          TextSpan(
+                            text: '/',
+                            style: AppTextStyle.semiBold13.copyWith(
+                              color: AppColor.lightSecondaryColor,
+                            ),
                           ),
-                        ),
-                      ],
+                          TextSpan(
+                            text: ' الكيلو',
+                            style: AppTextStyle.semiBold13.copyWith(
+                              color: AppColor.lightSecondaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    trailing: GestureDetector(
+                      onTap: () {
+                        context.read<CartCubit>().addCartItem(product);
+                      },
+                      child: const CircleAvatar(
+                        backgroundColor: AppColor.primaryColor,
+                        child: Icon(Icons.add, color: Colors.white),
+                      ),
                     ),
                   ),
-                  trailing: GestureDetector(
-                    onTap: () {
-                      context.read<CartCubit>().addCartItem(product);
-                    },
-                    child: const CircleAvatar(
-                      backgroundColor: AppColor.primaryColor,
-                      child: Icon(Icons.add, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.favorite_outline),
+            Positioned(
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.favorite_outline),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

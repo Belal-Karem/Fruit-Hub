@@ -4,8 +4,8 @@ import 'package:fruit_hub/features/home/presentation/views/item_details_view.dar
 
 import '../../../../../core/entites/product_entity.dart';
 
-class ProductsgGridView extends StatelessWidget {
-  const ProductsgGridView({super.key, required this.products});
+class ProductsView extends StatelessWidget {
+  const ProductsView({super.key, required this.products});
 
   final List<ProductEntity> products;
 
