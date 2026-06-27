@@ -9,6 +9,7 @@ import '../../../../../core/utils/theme/app_text_style.dart';
 import '../../../../../core/widgets/custom_network_image.dart';
 import '../../../domain/entites/cart_item_entity.dart';
 import '../../manager/cart_cubit/cart_cubit.dart';
+import '../../manager/cart_item/cart_item_cubit.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({super.key, required this.cartItemEntity});
@@ -60,7 +61,21 @@ class CartItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    CartItemActionButtons(cartItemEntity: cartItemEntity),
+                    CartItemActionButtons(
+                      quantity: cartItemEntity.quantity,
+                      decreaseQuantity: () {
+                        cartItemEntity.decreaseQuantity();
+                        context.read<CartItemCubit>().updateCartItem(
+                          cartItemEntity,
+                        );
+                      },
+                      increaseQuantity: () {
+                        cartItemEntity.increaseQuantity();
+                        context.read<CartItemCubit>().updateCartItem(
+                          cartItemEntity,
+                        );
+                      },
+                    ),
                     const Spacer(),
                     Text(
                       '${cartItemEntity.calculatedtotalPrice()} جنيه',

@@ -12,7 +12,10 @@ class ItemDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Provider.value(value: product, child: ItemDetailsViewBody()),
+      body: Provider.value(
+        value: product,
+        child: ItemDetailsViewBody(product: product),
+      ),
     );
   }
 }

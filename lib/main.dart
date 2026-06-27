@@ -7,6 +7,7 @@ import 'package:fruit_hub/core/services/custom_bloc_observer.dart';
 import 'package:fruit_hub/core/services/get_it_service.dart';
 import 'package:fruit_hub/core/services/shared_preferences%20_singleton.dart';
 import 'package:fruit_hub/core/utils/theme/app_color.dart';
+import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:fruit_hub/firebase_options.dart';
 
@@ -26,24 +27,28 @@ class FruitHub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: Locale('ar'),
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => CartCubit())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: Locale('ar'),
 
-      theme: ThemeData(
-        fontFamily: 'Cairo',
-        scaffoldBackgroundColor: AppColor.scaffoldBackgroundColor,
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+        theme: ThemeData(
+          fontFamily: 'Cairo',
+          scaffoldBackgroundColor: AppColor.scaffoldBackgroundColor,
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+        ),
+        onGenerateRoute: onGenerateRoute,
+
+        initialRoute: SplashView.routeName,
       ),
-      onGenerateRoute: onGenerateRoute,
-      initialRoute: SplashView.routeName,
     );
   }
 }
