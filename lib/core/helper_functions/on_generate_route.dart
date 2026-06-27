@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/core/entites/product_entity.dart';
 import 'package:fruit_hub/features/auth/presentation/views/login_view.dart';
 import 'package:fruit_hub/features/auth/presentation/views/signup_view.dart';
 import 'package:fruit_hub/features/best_selling_fruit/presentation/views/best_selling_view.dart';
@@ -27,7 +28,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case ProductsView.routeName:
       return MaterialPageRoute(builder: (context) => const ProductsView());
     case ItemDetailsView.routeName:
-      return MaterialPageRoute(builder: (context) => const ItemDetailsView());
+      return MaterialPageRoute(
+        builder: (context) =>
+            ItemDetailsView(product: settings.arguments as ProductEntity),
+      );
     case CheckoutView.routeName:
       return MaterialPageRoute(
         builder: (context) =>

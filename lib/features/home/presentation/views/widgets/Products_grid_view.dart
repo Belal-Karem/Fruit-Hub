@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/widgets/fruit_item.dart';
-import 'package:fruit_hub/features/home/presentation/views/item_details_view.dart';
 
 import '../../../../../core/entites/product_entity.dart';
 
@@ -20,12 +19,7 @@ class ProductsgGridView extends StatelessWidget {
         crossAxisSpacing: 16,
       ),
       itemBuilder: (context, index) {
-        return FruitItem(
-          onTap: () {
-            Navigator.pushNamed(context, ItemDetailsView.routeName);
-          },
-          product: products[index],
-        );
+        return FruitItem(product: products[index]);
       },
     );
   }

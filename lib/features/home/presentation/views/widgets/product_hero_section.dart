@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/core/entites/product_entity.dart';
 import 'package:fruit_hub/core/widgets/custom_back_icon.dart';
+import 'package:fruit_hub/core/widgets/custom_network_image.dart';
+import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
 
 import '../../../../../core/utils/app_images.dart';
@@ -28,7 +31,9 @@ class ProductHeroSection extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: Image.asset(Assets.imagesWeatermelonTest),
+            child: CustomNetworkImage(
+              imageUrl: context.read<ProductEntity>().imageUrl!,
+            ),
           ),
           Positioned(top: 40, child: CustomBackIcon()),
         ],

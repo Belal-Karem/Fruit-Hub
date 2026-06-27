@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/entites/product_entity.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/product_info_cards.dart';
 import '../../../../../core/utils/theme/app_color.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
@@ -8,16 +10,18 @@ class ProductDetailsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var product = context.read<ProductEntity>();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
           // trailing: CartItemActionButtons(),
-          title: Text('بطيخ', style: AppTextStyle.bold16),
+          title: Text(product.name, style: AppTextStyle.bold16),
           subtitle: Text.rich(
             TextSpan(
               children: [
                 TextSpan(
-                  text: '20جنية ',
+                  text: '${product.price}جنية ',
                   style: AppTextStyle.bold13.copyWith(
                     color: AppColor.secondaryColor,
                   ),
@@ -37,9 +41,9 @@ class ProductDetailsSection extends StatelessWidget {
           children: [
             Icon(Icons.star, color: const Color(0xffFFC529)),
             const SizedBox(width: 2.5),
-            Text('4.5', style: AppTextStyle.semiBold13),
+            Text(product.avgRating.toString(), style: AppTextStyle.semiBold13),
             const SizedBox(width: 9),
-            Text('(+30)', style: AppTextStyle.regular13),
+            Text('(${product.ratingCount})', style: AppTextStyle.regular13),
             const SizedBox(width: 9),
             Text(
               'المراجعه',
@@ -51,10 +55,7 @@ class ProductDetailsSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        Text(
-          'ينتمي إلى الفصيلة القرعية ولثمرته لُب حلو المذاق وقابل للأكل، وبحسب علم النبات فهي تعتبر ثمار لبيّة، تستعمل لفظة البطيخ للإشارة إلى النبات نفسه أو إلى الثمرة تحديداً',
-          style: AppTextStyle.regular13,
-        ),
+        Text(product.description, style: AppTextStyle.regular13),
         const SizedBox(height: 16),
         ProductInfoCards(),
       ],

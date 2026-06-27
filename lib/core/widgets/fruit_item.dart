@@ -5,18 +5,24 @@ import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/custom_network_image.dart';
 import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 
+import '../../features/home/presentation/views/item_details_view.dart';
 import '../entites/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key, required this.product, required this.onTap});
+  const FruitItem({super.key, required this.product});
 
   final ProductEntity product;
-  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          ItemDetailsView.routeName,
+          arguments: product,
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
           color: AppColor.fruitItemColor,
