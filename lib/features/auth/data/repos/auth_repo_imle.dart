@@ -150,8 +150,13 @@ class AuthRepoImle extends AuthRepo {
   }
 
   @override
-  Future<void> saveUserData({required UserEntity user}) async {
-    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
-    await Prefs.setString(BackendEndpoint.kUserData, jsonData);
+  Future<Either<Failure, void>> saveUserData({required UserEntity user}) async {
+    try {
+      var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+      await Prefs.setString(BackendEndpoint.kUserData, jsonData);
+      return right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 }
