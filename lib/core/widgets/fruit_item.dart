@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/custom_network_image.dart';
-import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:fruit_hub/core/cubits/cart_cubit/cart_cubit.dart';
 
-import '../../features/home/presentation/views/item_details_view.dart';
+import '../../features/product_details/presentation/views/item_details_view.dart';
 import '../entites/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
@@ -19,7 +19,7 @@ class FruitItem extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          ItemDetailsView.routeName,
+          ProductDetailsView.routeName,
           arguments: product,
         );
       },

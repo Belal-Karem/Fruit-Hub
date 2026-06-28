@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item_action_buttons.dart';
+import 'package:fruit_hub/core/widgets/cart_item_action_buttons.dart';
 import 'package:svg_flutter/svg.dart';
 
 import '../../../../../core/utils/app_images.dart';
@@ -8,7 +8,7 @@ import '../../../../../core/utils/theme/app_color.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
 import '../../../../../core/widgets/custom_network_image.dart';
 import '../../../domain/entites/cart_item_entity.dart';
-import '../../manager/cart_cubit/cart_cubit.dart';
+import '../../../../../core/cubits/cart_cubit/cart_cubit.dart';
 import '../../manager/cart_item/cart_item_cubit.dart';
 
 class CartItem extends StatelessWidget {

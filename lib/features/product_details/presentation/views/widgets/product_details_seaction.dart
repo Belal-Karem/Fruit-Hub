@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/entites/product_entity.dart';
-import 'package:fruit_hub/features/home/presentation/views/widgets/product_info_cards.dart';
+import 'package:fruit_hub/features/product_details/presentation/views/widgets/product_info_cards.dart';
 import '../../../../../core/utils/theme/app_color.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../manager/cart_cubit/cart_cubit.dart';
-import 'cart_item_action_buttons.dart';
+import '../../../../../core/widgets/cart_item_action_buttons.dart';
+import '../../../../../core/cubits/cart_cubit/cart_cubit.dart';
 
 class ProductDetailsSection extends StatefulWidget {
   const ProductDetailsSection({super.key});

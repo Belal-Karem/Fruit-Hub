@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
-import 'package:fruit_hub/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:fruit_hub/core/cubits/cart_cubit/cart_cubit.dart';
 
 class CartHeader extends StatelessWidget {
   const CartHeader({super.key});
