@@ -1,6 +1,7 @@
 class BackendEndpoint {
   static const addUserdata = 'users';
   static const getUserData = 'users';
+  static const ubdateUserData = 'users';
   static const isUserExist = 'users';
   static const getProducts = 'products';
   static const kUserData = 'UsersData';

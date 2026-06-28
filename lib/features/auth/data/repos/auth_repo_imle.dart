@@ -66,7 +66,7 @@ class AuthRepoImle extends AuthRepo {
         email: email,
         password: password,
       );
-      var userEntity = await getUserDarta(uId: user.uid);
+      var userEntity = await getUserData(uId: user.uid);
       await saveUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
@@ -90,7 +90,7 @@ class AuthRepoImle extends AuthRepo {
         docId: user.uid,
       );
       if (userexist) {
-        await getUserDarta(uId: user.uid);
+        await getUserData(uId: user.uid);
       } else {
         await addUserDate(user: userEntity);
       }
@@ -116,7 +116,7 @@ class AuthRepoImle extends AuthRepo {
         docId: user.uid,
       );
       if (userexist) {
-        await getUserDarta(uId: user.uid);
+        await getUserData(uId: user.uid);
       } else {
         await addUserDate(user: userEntity);
       }
@@ -141,7 +141,7 @@ class AuthRepoImle extends AuthRepo {
   }
 
   @override
-  Future<UserEntity> getUserDarta({required String uId}) async {
+  Future<UserEntity> getUserData({required String uId}) async {
     var data = await dataBaseService.getData(
       path: BackendEndpoint.getUserData,
       docId: uId,
@@ -157,6 +157,27 @@ class AuthRepoImle extends AuthRepo {
       return right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateUserData({
+    required UserEntity user,
+    required String uId,
+  }) async {
+    try {
+      await dataBaseService.updateDtata(
+        path: BackendEndpoint.ubdateUserData,
+        data: UserModel.fromEntity(user).toMap(),
+        docId: uId,
+      );
+      return right(null);
+    } on CustomException catch (e) {
+      log('Exception in AuthRepoImle.updateUserData ${e.toString()}');
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in AuthRepoImle.updateUserData ${e.toString()}');
+      return left(ServerFailure('حدث خطاء غير متوقع'));
     }
   }
 }

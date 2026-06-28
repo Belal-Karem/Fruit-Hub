@@ -12,14 +12,14 @@ class UploadImageCubit extends Cubit<UploadImageState> {
   UploadImageCubit(this.uploadImageRepo, this.authRepo)
     : super(UploadImageInitial());
 
-  Future<void> uploadImage(UserEntity user) async {
+  Future<void> uploadImage(UserEntity user, String uId) async {
     emit(UploadImageLoading());
     var result = await uploadImageRepo.uploadImage(user.image!);
     result.fold(
       (failure) => emit(UploadImageFailure(message: failure.message)),
       (url) async {
         user.imageUrl = url;
-        var result = await authRepo.saveUserData(user: user);
+        var result = await authRepo.updateUserData(user: user, uId: uId);
         result.fold(
           (failure) => emit(UploadImageFailure(message: failure.message)),
           (_) => emit(UploadImageSuccess()),

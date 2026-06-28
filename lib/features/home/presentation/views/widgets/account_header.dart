@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/widgets/custom_network_image.dart';
 import 'package:fruit_hub/features/auth/domain/entity/user_entity.dart';
 import 'package:fruit_hub/features/home/presentation/manager/upload_image/upload_image_cubit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,7 +32,7 @@ class _AccountHeaderState extends State<AccountHeader> {
           CircleAvatar(
             backgroundColor: Colors.white,
             radius: 30,
-            child: Image.asset(Assets.imagesProfileImageTest),
+            child: CustomNetworkImage(imageUrl: getUserData().imageUrl!),
           ),
           Positioned(
             bottom: -15,
@@ -46,13 +47,17 @@ class _AccountHeaderState extends State<AccountHeader> {
                 setState(() {});
                 if (imageFile != null) {
                   var getUser = getUserData();
+
                   UserEntity user = UserEntity(
                     email: getUser.email,
                     uId: getUser.uId,
                     name: getUser.name,
                     image: imageFile!,
                   );
-                  await context.read<UploadImageCubit>().uploadImage(user);
+                  await context.read<UploadImageCubit>().uploadImage(
+                    user,
+                    getUser.uId!,
+                  );
                 } else {
                   showErrorBar(context, 'Please select an image');
                 }
