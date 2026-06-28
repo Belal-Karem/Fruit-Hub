@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:path/path.dart' as p;
-import 'package:fruit_hub/core/services/storage_servive.dart';
+import 'package:fruit_hub/core/services/storage_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/app_key.dart';
 
-class SupabaseStorageService implements StorageServive {
+class SupabaseStorageService implements StorageService {
   static late Supabase supabase;
 
   static createBucket(String bucketName) async {
