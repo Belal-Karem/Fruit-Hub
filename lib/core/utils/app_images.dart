@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/arrow_left_back_icon.svg
   static const String imagesArrowLeftBackIcon = "assets/images/arrow_left_back_icon.svg";
 
+  /// Assets for imagesArrowRight
+  /// assets/images/arrow_right.svg
+  static const String imagesArrowRight = "assets/images/arrow_right.svg";
+
   /// Assets for imagesArrowSwapHorizontalIcon
   /// assets/images/arrow_swap_horizontal_icon.svg
   static const String imagesArrowSwapHorizontalIcon = "assets/images/arrow_swap_horizontal_icon.svg";
@@ -46,6 +50,10 @@ class Assets {
   /// assets/images/facebook_icon.svg
   static const String imagesFacebookIcon = "assets/images/facebook_icon.svg";
 
+  /// Assets for imagesFavoritesIcon
+  /// assets/images/favorites_icon.svg
+  static const String imagesFavoritesIcon = "assets/images/favorites_icon.svg";
+
   /// Assets for imagesFeaturedItem
   /// assets/images/featured_item.svg
   static const String imagesFeaturedItem = "assets/images/featured_item.svg";
@@ -66,6 +74,10 @@ class Assets {
   /// assets/images/Logo.svg
   static const String imagesLogo = "assets/images/Logo.svg";
 
+  /// Assets for imagesMagicpenIcon
+  /// assets/images/magicpen_icon.svg
+  static const String imagesMagicpenIcon = "assets/images/magicpen_icon.svg";
+
   /// Assets for imagesMastercard
   /// assets/images/Mastercard.svg
   static const String imagesMastercard = "assets/images/Mastercard.svg";
@@ -73,6 +85,14 @@ class Assets {
   /// Assets for imagesNotification
   /// assets/images/notification.svg
   static const String imagesNotification = "assets/images/notification.svg";
+
+  /// Assets for imagesNotificationIcon
+  /// assets/images/notification_icon.svg
+  static const String imagesNotificationIcon = "assets/images/notification_icon.svg";
+
+  /// Assets for imagesOrdersIcon
+  /// assets/images/orders_icon.svg
+  static const String imagesOrdersIcon = "assets/images/orders_icon.svg";
 
   /// Assets for imagesOrganic
   /// assets/images/Organic.svg
@@ -129,6 +149,10 @@ class Assets {
   /// Assets for imagesTrashIcon
   /// assets/images/trash_icon.svg
   static const String imagesTrashIcon = "assets/images/trash_icon.svg";
+
+  /// Assets for imagesUserIcon
+  /// assets/images/user_Icon.svg
+  static const String imagesUserIcon = "assets/images/user_Icon.svg";
 
   /// Assets for imagesValidity
   /// assets/images/Validity.svg
