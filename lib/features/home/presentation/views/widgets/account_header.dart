@@ -2,15 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/utils/app_images.dart';
 import 'package:fruit_hub/core/widgets/custom_network_image.dart';
 import 'package:fruit_hub/features/auth/domain/entity/user_entity.dart';
 import 'package:fruit_hub/features/home/presentation/manager/upload_image/upload_image_cubit.dart';
+import 'package:fruit_hub/features/home/presentation/views/widgets/avatar_edit_button.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:svg_flutter/svg.dart';
+import 'package:svg_flutter/svg_flutter.dart';
 
 import '../../../../../core/helper_functions/get_user.dart';
 import '../../../../../core/helper_functions/show_snack_bar.dart';
-import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
 
 class AccountHeader extends StatefulWidget {
@@ -32,7 +33,9 @@ class _AccountHeaderState extends State<AccountHeader> {
           CircleAvatar(
             backgroundColor: Colors.white,
             radius: 30,
-            child: CustomNetworkImage(imageUrl: getUserData().imageUrl!),
+            child: getUserData().imageUrl == null
+                ? SvgPicture.asset(Assets.imagesProfileImage)
+                : CustomNetworkImage(imageUrl: getUserData().imageUrl!),
           ),
           Positioned(
             bottom: -15,
@@ -76,40 +79,46 @@ class _AccountHeaderState extends State<AccountHeader> {
   }
 
   Future<void> pickerImage() async {
+    final ImageSource? source = await showModalBottomSheet<ImageSource>(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo_camera),
+                title: const Text('Camera'),
+                onTap: () {
+                  Navigator.pop(context, ImageSource.camera);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
+                onTap: () {
+                  Navigator.pop(context, ImageSource.gallery);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (source == null) return;
+
     try {
       final ImagePicker picker = ImagePicker();
-      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      final XFile? image = await picker.pickImage(source: source);
+
       if (image != null) {
         imageFile = File(image.path);
-        // widget.onFileChanged(imageFile!);
         setState(() {});
       } else {
         debugPrint('No image selected');
       }
-    } on Exception catch (e) {
+    } catch (e) {
       debugPrint(e.toString());
     }
-  }
-}
-
-class AvatarEditButton extends StatelessWidget {
-  const AvatarEditButton({super.key, required this.onTap});
-
-  final void Function() onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: CircleAvatar(
-        backgroundColor: Colors.white,
-        radius: 15,
-        child: CircleAvatar(
-          backgroundColor: Color(0xffF9F9F9),
-          radius: 12,
-          child: SvgPicture.asset(Assets.imagesCameraIcon),
-        ),
-      ),
-    );
   }
 }
