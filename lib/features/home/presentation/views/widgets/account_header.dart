@@ -1,13 +1,27 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/features/auth/domain/entity/user_entity.dart';
+import 'package:fruit_hub/features/home/presentation/manager/upload_image/upload_image_cubit.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:svg_flutter/svg.dart';
 
 import '../../../../../core/helper_functions/get_user.dart';
+import '../../../../../core/helper_functions/show_snack_bar.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
 
-class AccountHeader extends StatelessWidget {
+class AccountHeader extends StatefulWidget {
   const AccountHeader({super.key});
 
+  @override
+  State<AccountHeader> createState() => _AccountHeaderState();
+}
+
+class _AccountHeaderState extends State<AccountHeader> {
+  File? imageFile;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -23,7 +37,27 @@ class AccountHeader extends StatelessWidget {
             bottom: -15,
             right: 0,
             left: 0,
-            child: AvatarEditButton(onTap: () {}),
+            child: AvatarEditButton(
+              onTap: () async {
+                isLoading = true;
+                setState(() {});
+                await pickerImage();
+                isLoading = false;
+                setState(() {});
+                if (imageFile != null) {
+                  var getUser = getUserData();
+                  UserEntity user = UserEntity(
+                    email: getUser.email,
+                    uId: getUser.uId,
+                    name: getUser.name,
+                    image: imageFile!,
+                  );
+                  await context.read<UploadImageCubit>().uploadImage(user);
+                } else {
+                  showErrorBar(context, 'Please select an image');
+                }
+              },
+            ),
           ),
         ],
       ),
@@ -34,6 +68,22 @@ class AccountHeader extends StatelessWidget {
       ),
       subtitle: Text(getUserData().email, style: AppTextStyle.regular13),
     );
+  }
+
+  Future<void> pickerImage() async {
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        imageFile = File(image.path);
+        // widget.onFileChanged(imageFile!);
+        setState(() {});
+      } else {
+        debugPrint('No image selected');
+      }
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
 

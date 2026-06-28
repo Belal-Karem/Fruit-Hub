@@ -7,5 +7,10 @@ class UserEntity {
   File? image;
   String? imageUrl;
 
-  UserEntity({required this.email, required this.uId, required this.name});
+  UserEntity({
+    this.image,
+    required this.email,
+    required this.uId,
+    required this.name,
+  });
 }
