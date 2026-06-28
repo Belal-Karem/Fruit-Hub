@@ -23,7 +23,7 @@ class AccountHeader extends StatelessWidget {
             bottom: -15,
             right: 0,
             left: 0,
-            child: const AvatarEditButton(),
+            child: AvatarEditButton(onTap: () {}),
           ),
         ],
       ),
@@ -38,17 +38,22 @@ class AccountHeader extends StatelessWidget {
 }
 
 class AvatarEditButton extends StatelessWidget {
-  const AvatarEditButton({super.key});
+  const AvatarEditButton({super.key, required this.onTap});
+
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: Colors.white,
-      radius: 15,
+    return GestureDetector(
+      onTap: onTap,
       child: CircleAvatar(
-        backgroundColor: Color(0xffF9F9F9),
-        radius: 12,
-        child: SvgPicture.asset(Assets.imagesCameraIcon),
+        backgroundColor: Colors.white,
+        radius: 15,
+        child: CircleAvatar(
+          backgroundColor: Color(0xffF9F9F9),
+          radius: 12,
+          child: SvgPicture.asset(Assets.imagesCameraIcon),
+        ),
       ),
     );
   }

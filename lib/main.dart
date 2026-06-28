@@ -6,6 +6,7 @@ import 'package:fruit_hub/core/helper_functions/on_generate_route.dart';
 import 'package:fruit_hub/core/services/custom_bloc_observer.dart';
 import 'package:fruit_hub/core/services/get_it_service.dart';
 import 'package:fruit_hub/core/services/shared_preferences%20_singleton.dart';
+import 'package:fruit_hub/core/services/supabase_storage_service.dart';
 import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/cubits/cart_cubit/cart_cubit.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_view.dart';
@@ -15,6 +16,8 @@ import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SupabaseStorageService.initializeSupabase();
+  await SupabaseStorageService.createBucket('user_image');
   Bloc.observer = CustomBlocObserver();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
