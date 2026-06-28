@@ -7,6 +7,7 @@ import 'package:fruit_hub/features/home/presentation/views/widgets/custom_cart_b
 
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/build_app_bar.dart';
+import '../../../../../core/widgets/custom_divider.dart';
 import '../../../../checkout/presentation/views/checkout_view.dart';
 
 class CartViewBody extends StatelessWidget {

@@ -62,6 +62,10 @@ class Assets {
   /// assets/images/google_icon.svg
   static const String imagesGoogleIcon = "assets/images/google_icon.svg";
 
+  /// Assets for imagesInfoCircleIcon
+  /// assets/images/info_circle_icon.svg
+  static const String imagesInfoCircleIcon = "assets/images/info_circle_icon.svg";
+
   /// Assets for imagesItemDetailsShape
   /// assets/images/item_details_shape.svg
   static const String imagesItemDetailsShape = "assets/images/item_details_shape.svg";
@@ -141,6 +145,10 @@ class Assets {
   /// Assets for imagesSettingFormat
   /// assets/images/setting_format.svg
   static const String imagesSettingFormat = "assets/images/setting_format.svg";
+
+  /// Assets for imagesSignoutIcon
+  /// assets/images/signout_icon.svg
+  static const String imagesSignoutIcon = "assets/images/signout_icon.svg";
 
   /// Assets for imagesSuccessfullOrder
   /// assets/images/successfull_order.svg

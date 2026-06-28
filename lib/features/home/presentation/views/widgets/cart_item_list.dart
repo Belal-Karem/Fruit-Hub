@@ -3,6 +3,7 @@ import 'package:fruit_hub/features/home/domain/entites/cart_item_entity.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/cart_item_bloc_builder.dart';
 
 import '../../../../../constants.dart';
+import '../../../../../core/widgets/custom_divider.dart';
 
 class CartItemList extends StatelessWidget {
   const CartItemList({super.key, required this.cartItems});
@@ -21,14 +22,5 @@ class CartItemList extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class CustomDivider extends StatelessWidget {
-  const CustomDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Divider(color: Color(0xFFF1F1F5), height: 25);
   }
 }
