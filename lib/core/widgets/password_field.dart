@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'custom_text_form_field.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField({super.key, this.onSaved});
+  const PasswordField({super.key, this.onSaved, this.hintText});
   final void Function(String?)? onSaved;
+  final String? hintText;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -16,7 +17,7 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       onSaved: widget.onSaved,
-      hintText: 'كلمة المرور',
+      hintText: widget.hintText ?? 'كلمة المرور',
       keyboardType: TextInputType.visiblePassword,
       obscureText: isPassword,
       suffixIcon: IconButton(
