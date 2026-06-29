@@ -166,11 +166,13 @@ class AuthRepoImle extends AuthRepo {
     required String uId,
   }) async {
     try {
+      final data = UserModel.fromEntity(user).toUpdateMap();
       await dataBaseService.updateDtata(
         path: BackendEndpoint.ubdateUserData,
-        data: UserModel.fromEntity(user).toMap(),
+        data: data,
         docId: uId,
       );
+      saveUserData(user: user);
       return right(null);
     } on CustomException catch (e) {
       log('Exception in AuthRepoImle.updateUserData ${e.toString()}');
