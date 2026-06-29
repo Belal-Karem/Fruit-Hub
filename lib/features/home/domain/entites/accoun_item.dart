@@ -1,23 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:fruit_hub/features/profile/presentation/views/profile_view.dart';
+
 import '../../../../core/utils/app_images.dart';
 
 class AccountItemEntity {
   final String title;
   final String icon;
   final AccountItemType type;
-  // final VoidCallback? onTap;
+  final void Function()? onTap;
 
   const AccountItemEntity({
+    this.onTap,
     required this.title,
     required this.icon,
     required this.type,
   });
 }
 
-List<AccountItemEntity> getAccountItemList = [
+List<AccountItemEntity> getAccountItemList(BuildContext context) => [
   AccountItemEntity(
     title: 'الملف الشخصي',
     icon: Assets.imagesUserIcon,
     type: AccountItemType.arrow,
+    onTap: () {
+      Navigator.pushNamed(context, ProfileView.routeName);
+    },
   ),
   AccountItemEntity(
     title: 'طلباتي',

@@ -13,19 +13,22 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(item.icon),
-        const SizedBox(width: 7),
-        Text(
-          item.title,
-          style: AppTextStyle.semiBold13.copyWith(
-            color: const Color(0xFF949D9E),
+    return GestureDetector(
+      onTap: item.onTap,
+      child: Row(
+        children: [
+          SvgPicture.asset(item.icon),
+          const SizedBox(width: 7),
+          Text(
+            item.title,
+            style: AppTextStyle.semiBold13.copyWith(
+              color: const Color(0xFF949D9E),
+            ),
           ),
-        ),
-        const Spacer(),
-        buildTrailing(item),
-      ],
+          const Spacer(),
+          buildTrailing(item),
+        ],
+      ),
     );
   }
 }

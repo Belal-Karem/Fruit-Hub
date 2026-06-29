@@ -10,12 +10,12 @@ class AccountItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList.separated(
       separatorBuilder: (context, index) => const CustomDivider(),
-      itemCount: getAccountItemList.length,
+      itemCount: getAccountItemList(context).length,
       itemBuilder: (context, index) {
         return Column(
           children: [
             const SizedBox(height: 8),
-            AccountItem(item: getAccountItemList[index]),
+            AccountItem(item: getAccountItemList(context)[index]),
             const SizedBox(height: 8),
           ],
         );

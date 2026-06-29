@@ -9,12 +9,15 @@ import 'package:fruit_hub/features/product_details/presentation/views/item_detai
 import 'package:fruit_hub/features/home/presentation/views/main_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/products_view.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:fruit_hub/features/profile/presentation/views/profile_view.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => const SplashView());
+    case ProfileView.routeName:
+      return MaterialPageRoute(builder: (context) => const ProfileView());
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case LoginView.routeName:
