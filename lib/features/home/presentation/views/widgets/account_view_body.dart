@@ -3,7 +3,7 @@ import 'package:fruit_hub/core/utils/app_images.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_divider.dart';
-import 'package:fruit_hub/features/home/presentation/views/widgets/account_header.dart';
+import 'package:fruit_hub/features/home/presentation/views/widgets/account_header_bloc_builder.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/account_item_list_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/signout_button.dart';
 import 'package:svg_flutter/svg.dart';
@@ -31,7 +31,7 @@ class AccountViewBody extends StatelessWidget {
                       showBackButton: false,
                       showNotification: false,
                     ),
-                    AccountHeader(),
+                    AccountHeaderBlocBuilder(),
                     const SizedBox(height: 16),
                     Text('عام', style: AppTextStyle.semiBold13),
                     const SizedBox(height: 16),
