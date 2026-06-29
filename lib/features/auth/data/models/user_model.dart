@@ -50,4 +50,17 @@ class UserModel extends UserEntity {
   toMap() {
     return {'email': email, 'name': name, 'uId': uId, 'imageUrl': imageUrl};
   }
+
+  Map<String, dynamic> toUpdateMap({
+    String? email,
+    String? name,
+    String? imageUrl,
+  }) {
+    return {
+      'email': email ?? this.email,
+      'name': name ?? this.name,
+      'uId': uId,
+      'imageUrl': imageUrl ?? this.imageUrl,
+    };
+  }
 }
