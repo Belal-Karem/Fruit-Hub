@@ -9,6 +9,7 @@ class UserEntity {
 
   UserEntity({
     this.image,
+    this.imageUrl,
     required this.email,
     required this.uId,
     required this.name,

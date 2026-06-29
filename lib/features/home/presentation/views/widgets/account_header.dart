@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
 import 'package:fruit_hub/core/widgets/custom_network_image.dart';
-import 'package:fruit_hub/features/auth/domain/entity/user_entity.dart';
 import 'package:fruit_hub/features/home/presentation/manager/upload_image/upload_image_cubit.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/avatar_edit_button.dart';
 import 'package:image_picker/image_picker.dart';
@@ -49,17 +48,8 @@ class _AccountHeaderState extends State<AccountHeader> {
                 isLoading = false;
                 setState(() {});
                 if (imageFile != null) {
-                  var getUser = getUserData();
-
-                  UserEntity user = UserEntity(
-                    email: getUser.email,
-                    uId: getUser.uId,
-                    name: getUser.name,
-                    image: imageFile!,
-                  );
                   await context.read<UploadImageCubit>().uploadImage(
-                    user,
-                    getUser.uId!,
+                    imageFile!,
                   );
                 } else {
                   showErrorBar(context, 'Please select an image');
