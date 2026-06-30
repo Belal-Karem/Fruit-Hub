@@ -129,4 +129,31 @@ class FirebaseAuthService {
   static bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;
   }
+
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      final credential = EmailAuthProvider.credential(
+        email: user!.email!,
+        password: currentPassword,
+      );
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        log('Exception in FirebaseAuthService.changePassword ${e.toString()}');
+        throw CustomException('يرجى تسجيل الدخول مرة اخرى');
+      } else if (e.code == 'wrong-password' || e.code == 'invalid-credential') {
+        throw CustomException('كلمة المرور غير صحيحة');
+      } else {
+        throw CustomException('حدث خطاء. يرجى المحاولة مرة اخرى لاحقا.');
+      }
+    } catch (e) {
+      log('Exception in FirebaseAuthService.changePassword ${e.toString()}');
+      throw CustomException('حدث خطاء. يرجى المحاولة مرة اخرى لاحقا.');
+    }
+  }
 }
