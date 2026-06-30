@@ -41,6 +41,9 @@ void setupGetIt() {
   );
 
   getIt.registerSingleton<UbdateUserDataRepo>(
-    UbdateUserDataRepoImpl(dataBaseService: getIt<DataBaseService>()),
+    UpdateUserDataRepoImpl(
+      dataBaseService: getIt<DataBaseService>(),
+      firebaseAuthService: getIt<FirebaseAuthService>(),
+    ),
   );
 }

@@ -130,7 +130,7 @@ class FirebaseAuthService {
     return FirebaseAuth.instance.currentUser != null;
   }
 
-  Future<void> changePassword({
+  Future<void> updatePassword({
     required String currentPassword,
     required String newPassword,
   }) async {
@@ -157,7 +157,7 @@ class FirebaseAuthService {
     }
   }
 
-  Future<void> changeEmail({
+  Future<void> updateEmail({
     required String currentPassword,
     required String email,
   }) async {
