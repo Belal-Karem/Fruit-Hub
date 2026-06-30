@@ -159,27 +159,4 @@ class AuthRepoImle extends AuthRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-
-  @override
-  Future<Either<Failure, void>> updateUserData({
-    required UserEntity user,
-    required String uId,
-  }) async {
-    try {
-      final data = UserModel.fromEntity(user).toUpdateMap();
-      await dataBaseService.updateDtata(
-        path: BackendEndpoint.ubdateUserData,
-        data: data,
-        docId: uId,
-      );
-      saveUserData(user: user);
-      return right(null);
-    } on CustomException catch (e) {
-      log('Exception in AuthRepoImle.updateUserData ${e.toString()}');
-      return left(ServerFailure(e.message));
-    } catch (e) {
-      log('Exception in AuthRepoImle.updateUserData ${e.toString()}');
-      return left(ServerFailure('حدث خطاء غير متوقع'));
-    }
-  }
 }
