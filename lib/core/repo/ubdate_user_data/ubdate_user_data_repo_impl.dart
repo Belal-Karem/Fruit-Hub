@@ -20,14 +20,13 @@ class UbdateUserDataRepoImpl implements UbdateUserDataRepo {
   @override
   Future<Either<Failure, void>> ubdateUserData({
     required UserEntity user,
-    required String uId,
   }) async {
     try {
       final data = UserModel.fromEntity(user).toUpdateMap();
       await dataBaseService.updateDtata(
         path: BackendEndpoint.ubdateUserData,
         data: data,
-        docId: uId,
+        docId: user.uId!,
       );
       saveUserData(user: user);
       return right(null);

@@ -30,7 +30,6 @@ class UploadImageCubit extends Cubit<UploadImageState> {
             image: image,
             imageUrl: url,
           ),
-          uId: getUser.uId!,
         );
         result.fold(
           (failure) => emit(UploadImageFailure(message: failure.message)),
