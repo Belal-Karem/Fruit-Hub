@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/helper_functions/get_user.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/core/widgets/password_field.dart';
+import 'package:fruit_hub/features/profile/presentation/manager/cubit/update_user_data_cubit_cubit.dart';
 
 import '../../../../../constants.dart';
 
-class ProfileViewBody extends StatelessWidget {
+class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
 
+  @override
+  State<ProfileViewBody> createState() => _ProfileViewBodyState();
+}
+
+String? name;
+String? email;
+late String currentPassword, newPassword;
+
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+class _ProfileViewBodyState extends State<ProfileViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,35 +33,44 @@ class ProfileViewBody extends StatelessWidget {
           CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    buildAppBar(
-                      context: context,
-                      title: 'الملف الشخصي',
-                      showNotification: false,
-                    ),
-                    const SizedBox(height: 24),
-                    Text('المعلومات الشخصيه', style: AppTextStyle.semiBold13),
-                    const SizedBox(height: 8),
-                    CustomTextFormField(
-                      hintText: getUserData().name,
-                      keyboardType: TextInputType.name,
-                    ),
-                    const SizedBox(height: 8),
-                    CustomTextFormField(
-                      hintText: getUserData().email,
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 16),
-                    Text('تغيير كلمة المرور', style: AppTextStyle.semiBold13),
-                    const SizedBox(height: 8),
-                    PasswordField(hintText: 'كلمة المرور الحالي'),
-                    const SizedBox(height: 8),
-                    PasswordField(hintText: 'كلمة المرور الجديده'),
-                    const SizedBox(height: 8),
-                    PasswordField(hintText: "تأكيد كلمة المرور الجديده"),
-                  ],
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildAppBar(
+                        context: context,
+                        title: 'الملف الشخصي',
+                        showNotification: false,
+                      ),
+                      const SizedBox(height: 24),
+                      Text('المعلومات الشخصيه', style: AppTextStyle.semiBold13),
+                      const SizedBox(height: 8),
+                      CustomTextFormField(
+                        onSaved: (value) {
+                          if (value != null) name = value;
+                        },
+                        hintText: getUserData().name,
+                        keyboardType: TextInputType.name,
+                      ),
+                      const SizedBox(height: 8),
+                      CustomTextFormField(
+                        // onSaved: (value) {
+                        //   if (value != null) email = value;
+                        // },
+                        hintText: getUserData().email,
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      const SizedBox(height: 16),
+                      Text('تغيير كلمة المرور', style: AppTextStyle.semiBold13),
+                      const SizedBox(height: 8),
+                      PasswordField(hintText: 'كلمة المرور الحالي'),
+                      const SizedBox(height: 8),
+                      PasswordField(hintText: 'كلمة المرور الجديده'),
+                      const SizedBox(height: 8),
+                      PasswordField(hintText: "تأكيد كلمة المرور الجديده"),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -57,7 +79,18 @@ class ProfileViewBody extends StatelessWidget {
             left: 0,
             right: 0,
             bottom: MediaQuery.sizeOf(context).height * 0.05,
-            child: CustomButton(text: 'حفظ التغييرات'),
+            child: CustomButton(
+              text: 'حفظ التغييرات',
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  context.read<UpdateUserDataCubitCubit>().updateUserData(
+                    name: name,
+                    email: email,
+                  );
+                }
+              },
+            ),
           ),
         ],
       ),

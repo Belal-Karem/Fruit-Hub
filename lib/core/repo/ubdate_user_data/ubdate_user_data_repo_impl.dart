@@ -13,7 +13,7 @@ import '../../services/data_base_service.dart';
 import '../../services/shared_preferences _singleton.dart';
 import '../../utils/backend_endpoint.dart';
 
-class UpdateUserDataRepoImpl implements UbdateUserDataRepo {
+class UpdateUserDataRepoImpl implements UpdateUserDataRepo {
   final DataBaseService dataBaseService;
   final FirebaseAuthService firebaseAuthService;
 
@@ -23,16 +23,15 @@ class UpdateUserDataRepoImpl implements UbdateUserDataRepo {
   });
 
   @override
-  Future<Either<Failure, void>> ubdateUserData({
+  Future<Either<Failure, void>> updateUserData({
     required UserEntity user,
-    required String uId,
   }) async {
     try {
       final data = UserModel.fromEntity(user).toUpdateMap();
       await dataBaseService.updateDtata(
         path: BackendEndpoint.ubdateUserData,
         data: data,
-        docId: uId,
+        docId: user.uId!,
       );
       saveUserData(user: user);
       return right(null);

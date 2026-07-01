@@ -1,28 +1,50 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fruit_hub/core/repo/ubdate_user_data/ubdate_user_date_repo.dart';
 
-import '../../../../../core/repo/ubdate_user_data/ubdate_user_data_repo_impl.dart';
+import '../../../../../core/helper_functions/get_user.dart';
 import '../../../../auth/domain/entity/user_entity.dart';
 
 part 'update_user_data_cubit_state.dart';
 
 class UpdateUserDataCubitCubit extends Cubit<UpdateUserDataCubitState> {
-  final UpdateUserDataRepoImpl ubdateUserDataRepoImpl;
-  UpdateUserDataCubitCubit(this.ubdateUserDataRepoImpl)
+  final UpdateUserDataRepo updateUserDataRepo;
+  UpdateUserDataCubitCubit(this.updateUserDataRepo)
     : super(UpdateUserDataCubitInitial());
 
-  Future<void> ubdateUserData({
-    required UserEntity user,
-    required String uId,
+  Future<void> updateUserData({
+    String? name,
+    String? email,
+    String? currentPassword,
   }) async {
     emit(UpdateUserDataCubitLoading());
-    final result = await ubdateUserDataRepoImpl.ubdateUserData(
-      user: user,
-      uId: uId,
+
+    if (email != null && email != getUserData().email) {
+      final emailResult = await updateUserDataRepo.updateEmail(
+        currentPassword: currentPassword!,
+        email: email,
+      );
+
+      final isFailure = emailResult.fold((failure) {
+        emit(UpdateUserDataCubitFailure(message: failure.message));
+        return true;
+      }, (_) => false);
+
+      if (isFailure) return;
+    }
+
+    final result = await updateUserDataRepo.updateUserData(
+      user: UserEntity(
+        uId: getUserData().uId,
+        name: name ?? getUserData().name,
+        email: email ?? getUserData().email,
+        imageUrl: getUserData().imageUrl,
+      ),
     );
+
     result.fold(
       (failure) => emit(UpdateUserDataCubitFailure(message: failure.message)),
-      (r) => emit(UpdateUserDataCubitSuccess()),
+      (_) => emit(UpdateUserDataCubitSuccess()),
     );
   }
 
@@ -31,7 +53,7 @@ class UpdateUserDataCubitCubit extends Cubit<UpdateUserDataCubitState> {
     required String email,
   }) async {
     emit(UpdateUserDataCubitLoading());
-    final result = await ubdateUserDataRepoImpl.updateEmail(
+    final result = await updateUserDataRepo.updateEmail(
       currentPassword: currentPassword,
       email: email,
     );
@@ -46,7 +68,7 @@ class UpdateUserDataCubitCubit extends Cubit<UpdateUserDataCubitState> {
     required String newPassword,
   }) async {
     emit(UpdateUserDataCubitLoading());
-    final result = await ubdateUserDataRepoImpl.updatePassword(
+    final result = await updateUserDataRepo.updatePassword(
       currentPassword: currentPassword,
       newPassword: newPassword,
     );
