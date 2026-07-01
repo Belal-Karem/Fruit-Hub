@@ -19,8 +19,8 @@ class ProfileViewBody extends StatefulWidget {
   State<ProfileViewBody> createState() => _ProfileViewBodyState();
 }
 
-String? name = null;
-String? email = null;
+String? name;
+String? email;
 late String? currentPassword, newPassword, confirmNewPassword;
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -80,21 +80,39 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       const SizedBox(height: 8),
                       PasswordField(
                         onSaved: (value) {
-                          if (value != null) currentPassword = value;
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              value != "") {
+                            currentPassword = value;
+                          } else {
+                            currentPassword = null;
+                          }
                         },
                         hintText: 'كلمة المرور الحالي',
                       ),
                       const SizedBox(height: 8),
                       PasswordField(
                         onSaved: (value) {
-                          if (value != null) newPassword = value;
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              value != "") {
+                            newPassword = value;
+                          } else {
+                            newPassword = null;
+                          }
                         },
                         hintText: 'كلمة المرور الجديده',
                       ),
                       const SizedBox(height: 8),
                       PasswordField(
                         onSaved: (value) {
-                          if (value != null) confirmNewPassword = value;
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              value != "") {
+                            confirmNewPassword = value;
+                          } else {
+                            confirmNewPassword = null;
+                          }
                         },
                         hintText: "تأكيد كلمة المرور الجديده",
                       ),
@@ -112,7 +130,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               text: 'حفظ التغييرات',
               onPressed: () {
                 formKey.currentState!.save();
-                if (email != null && name != null) {
+                if (email != null || name != null) {
                   updateUserDataHandel(context);
                   return;
                 } else if (newPassword != null) {
