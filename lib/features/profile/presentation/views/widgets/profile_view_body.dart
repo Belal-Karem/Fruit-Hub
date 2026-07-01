@@ -7,7 +7,8 @@ import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/core/widgets/password_field.dart';
-import 'package:fruit_hub/features/profile/presentation/manager/cubit/update_user_data_cubit_cubit.dart';
+import 'package:fruit_hub/features/profile/presentation/manager/cubit/update_user_data_cubit.dart';
+import 'package:fruit_hub/features/profile/presentation/views/widgets/re_auth_dialog.dart';
 
 import '../../../../../constants.dart';
 
@@ -18,9 +19,9 @@ class ProfileViewBody extends StatefulWidget {
   State<ProfileViewBody> createState() => _ProfileViewBodyState();
 }
 
-String? name;
-String? email;
-late String? currentPassword, newPassword;
+String? name = null;
+String? email = null;
+late String? currentPassword, newPassword, confirmNewPassword;
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -49,7 +50,13 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       const SizedBox(height: 8),
                       CustomTextFormField(
                         onSaved: (value) {
-                          if (value != null) name = value;
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              value != "") {
+                            name = value;
+                          } else {
+                            name = null;
+                          }
                         },
                         hintText: getUserData().name,
                         keyboardType: TextInputType.name,
@@ -57,7 +64,13 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       const SizedBox(height: 8),
                       CustomTextFormField(
                         onSaved: (value) {
-                          if (value != null) email = value;
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              value != "") {
+                            email = value;
+                          } else {
+                            email = null;
+                          }
                         },
                         hintText: getUserData().email,
                         keyboardType: TextInputType.emailAddress,
@@ -65,11 +78,26 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       const SizedBox(height: 16),
                       Text('تغيير كلمة المرور', style: AppTextStyle.semiBold13),
                       const SizedBox(height: 8),
-                      PasswordField(hintText: 'كلمة المرور الحالي'),
+                      PasswordField(
+                        onSaved: (value) {
+                          if (value != null) currentPassword = value;
+                        },
+                        hintText: 'كلمة المرور الحالي',
+                      ),
                       const SizedBox(height: 8),
-                      PasswordField(hintText: 'كلمة المرور الجديده'),
+                      PasswordField(
+                        onSaved: (value) {
+                          if (value != null) newPassword = value;
+                        },
+                        hintText: 'كلمة المرور الجديده',
+                      ),
                       const SizedBox(height: 8),
-                      PasswordField(hintText: "تأكيد كلمة المرور الجديده"),
+                      PasswordField(
+                        onSaved: (value) {
+                          if (value != null) confirmNewPassword = value;
+                        },
+                        hintText: "تأكيد كلمة المرور الجديده",
+                      ),
                     ],
                   ),
                 ),
@@ -82,26 +110,17 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             bottom: MediaQuery.sizeOf(context).height * 0.05,
             child: CustomButton(
               text: 'حفظ التغييرات',
-              onPressed: () async {
+              onPressed: () {
                 formKey.currentState!.save();
-                if (email != null && email != getUserData().email) {
-                  currentPassword = await showDialog<String>(
-                    context: context,
-                    builder: (context) => const ReAuthenticationDialog(),
-                  );
-                  if (currentPassword == null || currentPassword!.isEmpty) {
-                    showErrorBar(
-                      context,
-                      'يرجى إدخال كلمة المرور لتغيير البريد الإلكتروني',
-                    );
-                    return;
-                  }
+                if (email != null && name != null) {
+                  updateUserDataHandel(context);
+                  return;
+                } else if (newPassword != null) {
+                  updatePasswoedHandling(context);
+                  return;
                 }
-                context.read<UpdateUserDataCubitCubit>().updateUserData(
-                  name: name,
-                  email: email,
-                  currentPassword: currentPassword,
-                );
+                // updateUserDataHandel(context);
+                // updatePasswoedHandling(context);
               },
             ),
           ),
@@ -109,56 +128,36 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       ),
     );
   }
-}
 
-class ReAuthenticationDialog extends StatefulWidget {
-  const ReAuthenticationDialog({super.key});
+  void updatePasswoedHandling(BuildContext context) {
+    if (newPassword == confirmNewPassword) {
+      context.read<UpdateUserDataCubit>().updatePassword(
+        currentPassword: currentPassword!,
+        newPassword: newPassword!,
+      );
+    } else {
+      showErrorBar(context, 'كلمة المرور غير متطابقة');
+    }
+  }
 
-  @override
-  State<ReAuthenticationDialog> createState() => _ReAuthenticationDialogState();
-}
-
-class _ReAuthenticationDialogState extends State<ReAuthenticationDialog> {
-  String? password;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Dialog(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CustomTextFormField(
-                onSaved: (value) {
-                  if (value != null) password = value;
-                },
-                hintText: 'يرجى إدخال كلمة المرور',
-                keyboardType: TextInputType.visiblePassword,
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('إلغاء'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      formKey.currentState!.save();
-                      Navigator.pop(context, password);
-                    },
-                    child: const Text('تأكيد'),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+  void updateUserDataHandel(BuildContext context) async {
+    if (email != null && email != getUserData().email) {
+      currentPassword = await showDialog<String>(
+        context: context,
+        builder: (context) => const ReAuthDialog(),
+      );
+      if (currentPassword == null || currentPassword!.isEmpty) {
+        showErrorBar(
+          context,
+          'يرجى إدخال كلمة المرور لتغيير البريد الإلكتروني',
+        );
+        return;
+      }
+    }
+    context.read<UpdateUserDataCubit>().updateUserData(
+      name: name,
+      email: email,
+      currentPassword: currentPassword,
     );
   }
 }

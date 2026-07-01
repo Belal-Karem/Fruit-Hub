@@ -7,9 +7,9 @@ import '../../../../auth/domain/entity/user_entity.dart';
 
 part 'update_user_data_cubit_state.dart';
 
-class UpdateUserDataCubitCubit extends Cubit<UpdateUserDataCubitState> {
+class UpdateUserDataCubit extends Cubit<UpdateUserDataCubitState> {
   final UpdateUserDataRepo updateUserDataRepo;
-  UpdateUserDataCubitCubit(this.updateUserDataRepo)
+  UpdateUserDataCubit(this.updateUserDataRepo)
     : super(UpdateUserDataCubitInitial());
 
   Future<void> updateUserData({
@@ -45,21 +45,6 @@ class UpdateUserDataCubitCubit extends Cubit<UpdateUserDataCubitState> {
     result.fold(
       (failure) => emit(UpdateUserDataCubitFailure(message: failure.message)),
       (_) => emit(UpdateUserDataCubitSuccess()),
-    );
-  }
-
-  Future<void> updateEmail({
-    required String currentPassword,
-    required String email,
-  }) async {
-    emit(UpdateUserDataCubitLoading());
-    final result = await updateUserDataRepo.updateEmail(
-      currentPassword: currentPassword,
-      email: email,
-    );
-    result.fold(
-      (failure) => emit(UpdateUserDataCubitFailure(message: failure.message)),
-      (r) => emit(UpdateUserDataCubitSuccess()),
     );
   }
 

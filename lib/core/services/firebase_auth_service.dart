@@ -174,7 +174,7 @@ class FirebaseAuthService {
         log('Exception in FirebaseAuthService.changeEmail ${e.toString()}');
         throw CustomException('يرجى تسجيل الدخول مرة اخرى');
       } else if (e.code == 'invalid-credential') {
-        throw CustomException('كلمة المرور غير صحيحة');
+        throw CustomException('الإيميل أو كلمة المرور غير صحيحة.');
       } else {
         throw CustomException('حدث خطاء. يرجى المحاولة مرة اخرى لاحقا.');
       }

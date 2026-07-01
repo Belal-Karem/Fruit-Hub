@@ -1,4 +1,4 @@
-part of 'update_user_data_cubit_cubit.dart';
+part of 'update_user_data_cubit.dart';
 
 sealed class UpdateUserDataCubitState extends Equatable {
   const UpdateUserDataCubitState();
