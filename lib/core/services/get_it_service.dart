@@ -40,7 +40,10 @@ void setupGetIt() {
     UploadImageRepoImpl(storageService: getIt<StorageService>()),
   );
 
-  getIt.registerSingleton<UbdateUserDataRepo>(
-    UbdateUserDataRepoImpl(dataBaseService: getIt<DataBaseService>()),
+  getIt.registerSingleton<UpdateUserDataRepo>(
+    UpdateUserDataRepoImpl(
+      dataBaseService: getIt<DataBaseService>(),
+      firebaseAuthService: getIt<FirebaseAuthService>(),
+    ),
   );
 }

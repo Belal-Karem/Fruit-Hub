@@ -11,7 +11,7 @@ part 'upload_image_state.dart';
 
 class UploadImageCubit extends Cubit<UploadImageState> {
   final UploadImageRepo uploadImageRepo;
-  final UbdateUserDataRepo ubdateUserDataRepo;
+  final UpdateUserDataRepo ubdateUserDataRepo;
   UploadImageCubit(this.uploadImageRepo, this.ubdateUserDataRepo)
     : super(UploadImageInitial());
 
@@ -22,7 +22,7 @@ class UploadImageCubit extends Cubit<UploadImageState> {
       (failure) => emit(UploadImageFailure(message: failure.message)),
       (url) async {
         var getUser = getUserData();
-        var result = await ubdateUserDataRepo.ubdateUserData(
+        var result = await ubdateUserDataRepo.updateUserData(
           user: UserEntity(
             email: getUser.email,
             uId: getUser.uId,

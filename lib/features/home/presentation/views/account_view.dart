@@ -14,7 +14,7 @@ class AccountView extends StatelessWidget {
     return BlocProvider(
       create: (context) => UploadImageCubit(
         getIt<UploadImageRepo>(),
-        getIt<UbdateUserDataRepo>(),
+        getIt<UpdateUserDataRepo>(),
       ),
       child: Scaffold(body: AccountViewBody()),
     );
