@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/helper_functions/get_user.dart';
+import 'package:fruit_hub/core/helper_functions/show_snack_bar.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
@@ -19,7 +20,7 @@ class ProfileViewBody extends StatefulWidget {
 
 String? name;
 String? email;
-late String currentPassword, newPassword;
+late String? currentPassword, newPassword;
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -55,9 +56,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       ),
                       const SizedBox(height: 8),
                       CustomTextFormField(
-                        // onSaved: (value) {
-                        //   if (value != null) email = value;
-                        // },
+                        onSaved: (value) {
+                          if (value != null) email = value;
+                        },
                         hintText: getUserData().email,
                         keyboardType: TextInputType.emailAddress,
                       ),
@@ -81,18 +82,82 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             bottom: MediaQuery.sizeOf(context).height * 0.05,
             child: CustomButton(
               text: 'حفظ التغييرات',
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  context.read<UpdateUserDataCubitCubit>().updateUserData(
-                    name: name,
-                    email: email,
+              onPressed: () async {
+                formKey.currentState!.save();
+                if (email != null && email != getUserData().email) {
+                  currentPassword = await showDialog<String>(
+                    context: context,
+                    builder: (context) => const ReAuthenticationDialog(),
                   );
+                  if (currentPassword == null || currentPassword!.isEmpty) {
+                    showErrorBar(
+                      context,
+                      'يرجى إدخال كلمة المرور لتغيير البريد الإلكتروني',
+                    );
+                    return;
+                  }
                 }
+                context.read<UpdateUserDataCubitCubit>().updateUserData(
+                  name: name,
+                  email: email,
+                  currentPassword: currentPassword,
+                );
               },
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ReAuthenticationDialog extends StatefulWidget {
+  const ReAuthenticationDialog({super.key});
+
+  @override
+  State<ReAuthenticationDialog> createState() => _ReAuthenticationDialogState();
+}
+
+class _ReAuthenticationDialogState extends State<ReAuthenticationDialog> {
+  String? password;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      child: Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomTextFormField(
+                onSaved: (value) {
+                  if (value != null) password = value;
+                },
+                hintText: 'يرجى إدخال كلمة المرور',
+                keyboardType: TextInputType.visiblePassword,
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('إلغاء'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      formKey.currentState!.save();
+                      Navigator.pop(context, password);
+                    },
+                    child: const Text('تأكيد'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
