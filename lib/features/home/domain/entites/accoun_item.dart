@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/features/orders/presentation/views/orders_view.dart';
 import 'package:fruit_hub/features/profile/presentation/views/profile_view.dart';
 
 import '../../../../core/utils/app_images.dart';
@@ -30,6 +31,9 @@ List<AccountItemEntity> getAccountItemList(BuildContext context) => [
     title: 'طلباتي',
     icon: Assets.imagesOrdersIcon,
     type: AccountItemType.arrow,
+    onTap: () {
+      Navigator.pushNamed(context, OrdersView.routeName);
+    },
   ),
   AccountItemEntity(
     title: 'المفضلة',
