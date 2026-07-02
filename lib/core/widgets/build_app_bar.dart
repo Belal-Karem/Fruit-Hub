@@ -9,11 +9,16 @@ AppBar buildAppBar({
   String? title = '',
   bool showBackButton = true,
   bool showNotification = true,
+  Function()? onTap,
 }) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
-    leading: Visibility(visible: showBackButton, child: CustomBackIcon()),
+    leading: Visibility(
+      visible: showBackButton,
+      child: CustomBackIcon(onTap: onTap),
+    ),
+
     elevation: 0,
     title: Text(title!, style: AppTextStyle.bold19),
     centerTitle: true,

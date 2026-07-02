@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomBackIcon extends StatelessWidget {
-  const CustomBackIcon({super.key});
+  const CustomBackIcon({super.key, this.onTap});
+
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: onTap ?? () => Navigator.pop(context),
       child: Container(
         padding: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(

@@ -7,6 +7,7 @@ import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/core/widgets/password_field.dart';
+import 'package:fruit_hub/features/home/presentation/manager/update_ui/update_ui_cubit.dart';
 import 'package:fruit_hub/features/profile/presentation/manager/update_user_date/update_user_data_cubit.dart';
 import 'package:fruit_hub/features/profile/presentation/views/widgets/re_auth_dialog.dart';
 
@@ -44,6 +45,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                         context: context,
                         title: 'الملف الشخصي',
                         showNotification: false,
+                        onTap: () {
+                          context.read<UpdateUiCubit>().updateUi();
+                          Navigator.pop(context);
+                        },
                       ),
                       const SizedBox(height: 24),
                       Text('المعلومات الشخصيه', style: AppTextStyle.semiBold13),

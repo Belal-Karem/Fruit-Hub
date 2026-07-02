@@ -9,6 +9,7 @@ import 'package:fruit_hub/core/services/shared_preferences%20_singleton.dart';
 import 'package:fruit_hub/core/services/supabase_storage_service.dart';
 import 'package:fruit_hub/core/utils/theme/app_color.dart';
 import 'package:fruit_hub/core/cubits/cart_cubit/cart_cubit.dart';
+import 'package:fruit_hub/features/home/presentation/manager/update_ui/update_ui_cubit.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:fruit_hub/firebase_options.dart';
 
@@ -31,7 +32,10 @@ class FruitHub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => CartCubit())],
+      providers: [
+        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(create: (context) => UpdateUiCubit()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
