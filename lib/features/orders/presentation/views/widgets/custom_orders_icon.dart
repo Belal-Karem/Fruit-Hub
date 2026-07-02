@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
-import '../../../../../core/utils/app_images.dart';
+class CustomOrdersIcon extends StatelessWidget {
+  const CustomOrdersIcon({super.key, required this.iconPath, this.color});
 
-class OrdersIconSection extends StatelessWidget {
-  const OrdersIconSection({super.key});
+  final String iconPath;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,10 @@ class OrdersIconSection extends StatelessWidget {
       height: 66,
       padding: const EdgeInsets.all(16),
       decoration: ShapeDecoration(
-        color: const Color(0xFFEBF9F1),
+        color: color ?? const Color(0xFFEBF9F1),
         shape: OvalBorder(),
       ),
-      child: SvgPicture.asset(Assets.imagesOrdersIcon),
+      child: SvgPicture.asset(iconPath),
     );
   }
 }

@@ -94,6 +94,26 @@ class Assets {
   /// assets/images/notification_icon.svg
   static const String imagesNotificationIcon = "assets/images/notification_icon.svg";
 
+  /// Assets for imagesOrdeDeliveryIcon
+  /// assets/images/orde_delivery_icon.svg
+  static const String imagesOrdeDeliveryIcon = "assets/images/orde_delivery_icon.svg";
+
+  /// Assets for imagesOrderCheckedIcon
+  /// assets/images/order_checked_icon.svg
+  static const String imagesOrderCheckedIcon = "assets/images/order_checked_icon.svg";
+
+  /// Assets for imagesOrderReceiveIcon
+  /// assets/images/order_receive_icon.svg
+  static const String imagesOrderReceiveIcon = "assets/images/order_receive_icon.svg";
+
+  /// Assets for imagesOrderShippedIcon
+  /// assets/images/order_shipped_icon.svg
+  static const String imagesOrderShippedIcon = "assets/images/order_shipped_icon.svg";
+
+  /// Assets for imagesOrderTrackIcon
+  /// assets/images/order_track_icon.svg
+  static const String imagesOrderTrackIcon = "assets/images/order_track_icon.svg";
+
   /// Assets for imagesOrdersIcon
   /// assets/images/orders_icon.svg
   static const String imagesOrdersIcon = "assets/images/orders_icon.svg";

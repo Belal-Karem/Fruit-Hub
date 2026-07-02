@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hub/features/orders/presentation/views/widgets/order_info_section.dart';
-import 'package:fruit_hub/features/orders/presentation/views/widgets/orders_icon_section.dart';
+import 'package:fruit_hub/core/utils/app_images.dart';
+import 'package:fruit_hub/features/orders/presentation/views/widgets/orders_info_section.dart';
+import 'package:fruit_hub/features/orders/presentation/views/widgets/custom_orders_icon.dart';
 
 import '../../../../../core/utils/app_decorations.dart';
 
@@ -14,9 +15,9 @@ class OrderItem extends StatelessWidget {
       decoration: AppDecorations.grayBoxDecoration,
       child: Row(
         children: [
-          OrdersIconSection(),
+          CustomOrdersIcon(iconPath: Assets.imagesOrdersIcon),
           const SizedBox(width: 16),
-          OrderInfoSection(),
+          OrdersInfoSection(),
         ],
       ),
     );
