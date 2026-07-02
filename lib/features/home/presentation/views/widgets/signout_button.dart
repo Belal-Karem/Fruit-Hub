@@ -12,7 +12,7 @@ class SignoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         clipBehavior: Clip.antiAlias,

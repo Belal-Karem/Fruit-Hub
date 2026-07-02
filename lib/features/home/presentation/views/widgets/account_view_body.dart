@@ -9,6 +9,7 @@ import 'package:fruit_hub/features/home/presentation/views/widgets/signout_butto
 import 'package:svg_flutter/svg.dart';
 
 import '../../../../../constants.dart';
+import '../../../../auth/presentation/views/login_view.dart';
 
 class AccountViewBody extends StatelessWidget {
   const AccountViewBody({super.key});
@@ -71,7 +72,11 @@ class AccountViewBody extends StatelessWidget {
           left: 0,
           right: 0,
           bottom: MediaQuery.sizeOf(context).height * 0.05,
-          child: SignoutButton(onTap: () {}),
+          child: SignoutButton(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, LoginView.routeName);
+            },
+          ),
         ),
       ],
     );
