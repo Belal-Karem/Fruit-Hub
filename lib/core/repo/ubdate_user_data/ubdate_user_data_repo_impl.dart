@@ -60,7 +60,7 @@ class UpdateUserDataRepoImpl implements UpdateUserDataRepo {
     required String email,
   }) async {
     try {
-      firebaseAuthService.updateEmail(
+      await firebaseAuthService.updateEmail(
         currentPassword: currentPassword,
         email: email,
       );
@@ -80,7 +80,7 @@ class UpdateUserDataRepoImpl implements UpdateUserDataRepo {
     required String newPassword,
   }) async {
     try {
-      firebaseAuthService.updatePassword(
+      await firebaseAuthService.updatePassword(
         currentPassword: currentPassword,
         newPassword: newPassword,
       );
