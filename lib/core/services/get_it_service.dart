@@ -12,6 +12,8 @@ import 'package:fruit_hub/features/auth/data/repos/auth_repo_imle.dart';
 import 'package:fruit_hub/features/auth/domain/repos/auth_repo.dart';
 import 'package:fruit_hub/features/home/data/repo/upload_image_repo_impl.dart';
 import 'package:fruit_hub/features/home/domain/entites/repo/upload_image_repo.dart';
+import 'package:fruit_hub/features/orders/data/repo/orders_repo_impl.dart';
+import 'package:fruit_hub/features/orders/domain/repo/orders_repo.dart';
 import 'package:get_it/get_it.dart';
 
 import 'data_base_service.dart';
@@ -45,5 +47,8 @@ void setupGetIt() {
       dataBaseService: getIt<DataBaseService>(),
       firebaseAuthService: getIt<FirebaseAuthService>(),
     ),
+  );
+  getIt.registerSingleton<OrdersRepo>(
+    OrdersRepoImpl(dataBaseService: getIt<DataBaseService>()),
   );
 }

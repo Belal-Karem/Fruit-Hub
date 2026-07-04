@@ -12,7 +12,7 @@ import '../../domain/entites/orders_entity.dart';
 
 class OrdersRepoImpl implements OrdersRepo {
   final DataBaseService dataBaseService;
-  OrdersRepoImpl(this.dataBaseService);
+  OrdersRepoImpl({required this.dataBaseService});
 
   @override
   Future<Either<Failure, List<OrdersEntity>>> getOrders() async {
