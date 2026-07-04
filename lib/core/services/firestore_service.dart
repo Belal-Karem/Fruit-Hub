@@ -42,6 +42,9 @@ class FirestoreService implements DataBaseService {
     required String path,
     String? docId,
     Map<String, dynamic>? query,
+    dynamic whereValue,
+    String? whereField,
+    String? orderBy,
   }) async {
     try {
       if (docId != null) {
@@ -49,17 +52,25 @@ class FirestoreService implements DataBaseService {
         return data.data() as Map<String, dynamic>;
       } else {
         Query<Map<String, dynamic>> data = firestore.collection(path);
-        if (query != null) {
-          if (query['orderBy'] != null) {
-            var orderByField = query['orderBy'];
-            var descending = query['descending'];
-            data = data.orderBy(orderByField, descending: descending);
+        if (whereValue == null) {
+          if (query != null) {
+            if (query['orderBy'] != null) {
+              var orderByField = query['orderBy'];
+              var descending = query['descending'];
+              data = data.orderBy(orderByField, descending: descending);
+            }
+            if (query['limit'] != null) {
+              var limit = query['limit'];
+              data = data.limit(limit);
+            }
           }
-          if (query['limit'] != null) {
-            var limit = query['limit'];
-            data = data.limit(limit);
-          }
+        } else {
+          data = firestore
+              .collection(path)
+              .where(whereField!, isEqualTo: whereValue)
+              .orderBy(orderBy!, descending: true);
         }
+
         var result = await data.get();
         return result.docs.map((e) => e.data()).toList();
       }

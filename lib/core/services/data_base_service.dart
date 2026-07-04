@@ -10,6 +10,9 @@ abstract class DataBaseService {
     required String path,
     String? docId,
     Map<String, dynamic> query,
+    dynamic whereValue,
+    String? whereField,
+    String? orderBy,
   });
 
   Future<bool> checkIfDataExist({required String path, required String docId});
