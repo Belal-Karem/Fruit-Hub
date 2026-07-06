@@ -57,6 +57,22 @@ class ProductModel {
       ratingCount: json['ratingCount'],
     );
   }
+
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
+      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
+      name: entity.name,
+      description: entity.description,
+      code: entity.code,
+      isFeatured: entity.isFeatured,
+      price: entity.price,
+      imageUrl: entity.imageUrl,
+      isOrganic: entity.isOrganic,
+      expirationsMonthsl: entity.expirationsMonthsl,
+      numberOfCalories: entity.numberOfCalories,
+      unitAmount: entity.unitAmount,
+    );
+  }
   ProductEntity toEntity() {
     return ProductEntity(
       reviews: reviews.map((e) => e.toEntity()).toList(),

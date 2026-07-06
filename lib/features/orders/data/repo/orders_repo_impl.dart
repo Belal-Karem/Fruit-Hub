@@ -18,7 +18,6 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Future<Either<Failure, List<OrdersEntity>>> getOrders() async {
     try {
-      log('Before getData');
       var data =
           await dataBaseService.getData(
                 path: BackendEndpoint.getOrder,
@@ -27,7 +26,6 @@ class OrdersRepoImpl implements OrdersRepo {
                 orderBy: 'date',
               )
               as List<Map<String, dynamic>>;
-      log('After getData');
       List<OrdersModel> orders = data
           .map((e) => OrdersModel.fromJson(e))
           .toList();

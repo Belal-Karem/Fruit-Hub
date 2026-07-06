@@ -8,4 +8,7 @@ class BackendEndpoint {
   static const addOrder = 'orders';
   static const getOrder = 'orders';
   static const image = 'image';
+
+  static const addFavorit = 'favorits';
+  static const getFavorit = 'favorits';
 }
