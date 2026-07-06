@@ -35,9 +35,9 @@ class OrdersListViewBlocBuilder extends StatelessWidget {
     return BlocBuilder<OrdersCubit, OrdersState>(
       builder: (context, state) {
         if (state is OrdersSuccess) {
-          return Expanded(child: OrderListView(orders: state.ordersEntityList));
+          return OrderListView(orders: state.ordersEntityList);
         } else if (state is OrdersFailure) {
-          // showErrorBar(context, state.message);
+          showErrorBar(context, state.message);
         } else {
           return const Center(child: CircularProgressIndicator());
         }

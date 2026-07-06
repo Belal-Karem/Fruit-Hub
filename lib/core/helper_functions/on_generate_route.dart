@@ -5,6 +5,7 @@ import 'package:fruit_hub/features/auth/presentation/views/signup_view.dart';
 import 'package:fruit_hub/features/best_selling_fruit/presentation/views/best_selling_view.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/checkout_view.dart';
 import 'package:fruit_hub/features/home/domain/entites/cart_entity.dart';
+import 'package:fruit_hub/features/orders/domain/entites/orders_entity.dart';
 import 'package:fruit_hub/features/orders/presentation/views/order_tracking_view.dart';
 import 'package:fruit_hub/features/orders/presentation/views/orders_view.dart';
 import 'package:fruit_hub/features/product_details/presentation/views/item_details_view.dart';
@@ -21,7 +22,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case OrdersView.routeName:
       return MaterialPageRoute(builder: (context) => const OrdersView());
     case OrderTrackingView.routeName:
-      return MaterialPageRoute(builder: (context) => const OrderTrackingView());
+      return MaterialPageRoute(
+        builder: (context) =>
+            OrderTrackingView(order: settings.arguments as OrdersEntity),
+      );
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
     case OnBoardingView.routeName:
