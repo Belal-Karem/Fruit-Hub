@@ -4,6 +4,7 @@ import 'package:fruit_hub/features/auth/presentation/views/login_view.dart';
 import 'package:fruit_hub/features/auth/presentation/views/signup_view.dart';
 import 'package:fruit_hub/features/best_selling_fruit/presentation/views/best_selling_view.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/checkout_view.dart';
+import 'package:fruit_hub/features/favorit/presentation/views/favorit_view.dart';
 import 'package:fruit_hub/features/home/domain/entites/cart_entity.dart';
 import 'package:fruit_hub/features/orders/domain/entites/orders_entity.dart';
 import 'package:fruit_hub/features/orders/presentation/views/order_tracking_view.dart';
@@ -28,6 +29,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
+    case FavoritView.routeName:
+      return MaterialPageRoute(builder: (context) => const FavoritView());
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case LoginView.routeName:

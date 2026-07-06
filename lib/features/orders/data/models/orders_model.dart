@@ -1,4 +1,3 @@
-import '../../../checkout/data/models/order_product_model.dart';
 import '../../domain/entites/orders_entity.dart';
 
 class OrdersModel {

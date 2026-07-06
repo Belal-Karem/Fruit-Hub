@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/features/favorit/presentation/views/favorit_view.dart';
 import 'package:fruit_hub/features/orders/presentation/views/orders_view.dart';
 import 'package:fruit_hub/features/profile/presentation/views/profile_view.dart';
 
@@ -39,6 +40,9 @@ List<AccountItemEntity> getAccountItemList(BuildContext context) => [
     title: 'المفضلة',
     icon: Assets.imagesFavoritesIcon,
     type: AccountItemType.arrow,
+    onTap: () {
+      Navigator.pushNamed(context, FavoritView.routeName);
+    },
   ),
   AccountItemEntity(
     title: 'الإشعارات',
