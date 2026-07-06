@@ -12,7 +12,7 @@ class OrderTrackingTimeline extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       decoration: AppDecorations.grayBoxDecoration,
-      child: Expanded(child: OrderTimelineListView()),
+      child: OrderTimelineListView(),
     );
   }
 }
