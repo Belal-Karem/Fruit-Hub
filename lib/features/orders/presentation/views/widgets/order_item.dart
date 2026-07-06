@@ -4,10 +4,11 @@ import 'package:fruit_hub/features/orders/presentation/views/widgets/orders_info
 import 'package:fruit_hub/features/orders/presentation/views/widgets/custom_orders_icon.dart';
 
 import '../../../../../core/utils/app_decorations.dart';
+import '../../../domain/entites/orders_entity.dart';
 
 class OrderItem extends StatelessWidget {
-  const OrderItem({super.key});
-
+  const OrderItem({super.key, required this.orders});
+  final OrdersEntity orders;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +18,7 @@ class OrderItem extends StatelessWidget {
         children: [
           CustomOrdersIcon(iconPath: Assets.imagesOrdersIcon),
           const SizedBox(width: 16),
-          OrdersInfoSection(),
+          OrdersInfoSection(orders: orders),
         ],
       ),
     );

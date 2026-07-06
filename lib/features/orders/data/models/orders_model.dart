@@ -5,9 +5,9 @@ class OrdersModel {
   final String date;
   final String orderNumber;
   final String status;
-  final String totalPrice;
+  final double totalPrice;
   final String uId;
-  final List<OrderProductModel> orderProductModelList;
+  final List<dynamic> orderProductModelList;
 
   OrdersModel({
     required this.date,
@@ -24,7 +24,7 @@ class OrdersModel {
     status: json['status'],
     totalPrice: json['totalPrice'],
     uId: json['uId'],
-    orderProductModelList: json['orderProductModelList'],
+    orderProductModelList: json['orderProductModelList'] as List<dynamic>,
   );
 
   OrdersEntity toEntity() {

@@ -9,7 +9,9 @@ class OrderInfoListView extends StatelessWidget {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return OrdersInfoSection();
+        return SizedBox();
+
+        // OrdersInfoSection();
       },
     );
   }

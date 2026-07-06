@@ -11,12 +11,12 @@ final class OrdersInitial extends OrdersState {}
 
 final class OrdersLoading extends OrdersState {}
 
-final class OrdersLoaded extends OrdersState {
+final class OrdersSuccess extends OrdersState {
   final List<OrdersEntity> ordersEntityList;
-  const OrdersLoaded({required this.ordersEntityList});
+  const OrdersSuccess({required this.ordersEntityList});
 }
 
 final class OrdersFailure extends OrdersState {
-  final String errorMessage;
-  const OrdersFailure({required this.errorMessage});
+  final String message;
+  const OrdersFailure({required this.message});
 }

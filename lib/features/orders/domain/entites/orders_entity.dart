@@ -1,12 +1,10 @@
-import '../../../checkout/data/models/order_product_model.dart';
-
 class OrdersEntity {
   final String date;
   final String orderNumber;
   final String status;
-  final String totalPrice;
+  final double totalPrice;
   final String uId;
-  final List<OrderProductModel> orderProductModelList;
+  final List<dynamic> orderProductModelList;
 
   OrdersEntity({
     required this.date,

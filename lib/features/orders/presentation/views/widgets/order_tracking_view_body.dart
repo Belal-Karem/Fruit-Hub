@@ -18,7 +18,7 @@ class OrderTrackingViewBody extends StatelessWidget {
             title: 'تتبع الطلب',
             showNotification: false,
           ),
-          OrderItem(),
+          // OrderItem(),
           const SizedBox(height: 19),
           Expanded(child: OrderTrackingTimeline()),
         ],

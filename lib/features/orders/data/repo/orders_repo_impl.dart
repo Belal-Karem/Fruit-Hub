@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub/core/error/failures.dart';
+import 'package:fruit_hub/core/helper_functions/get_user.dart';
 import 'package:fruit_hub/core/services/data_base_service.dart';
 import 'package:fruit_hub/core/utils/backend_endpoint.dart';
 import 'package:fruit_hub/features/orders/data/models/orders_model.dart';
@@ -17,10 +18,16 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Future<Either<Failure, List<OrdersEntity>>> getOrders() async {
     try {
+      log('Before getData');
       var data =
-          await dataBaseService.getData(path: BackendEndpoint.getOrder)
+          await dataBaseService.getData(
+                path: BackendEndpoint.getOrder,
+                whereField: 'uId',
+                whereValue: getUserData().uId,
+                orderBy: 'date',
+              )
               as List<Map<String, dynamic>>;
-
+      log('After getData');
       List<OrdersModel> orders = data
           .map((e) => OrdersModel.fromJson(e))
           .toList();
