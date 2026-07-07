@@ -8,6 +8,8 @@ import 'package:fruit_hub/core/services/firebase_auth_service.dart';
 import 'package:fruit_hub/core/services/firestore_service.dart';
 import 'package:fruit_hub/core/services/storage_service.dart';
 import 'package:fruit_hub/core/services/supabase_storage_service.dart';
+import 'package:fruit_hub/features/about/data/repo/about_repo_impl.dart';
+import 'package:fruit_hub/features/about/domain/repo/about_repo.dart';
 import 'package:fruit_hub/features/auth/data/repos/auth_repo_imle.dart';
 import 'package:fruit_hub/features/auth/domain/repos/auth_repo.dart';
 import 'package:fruit_hub/features/favorit/data/repo/favorit_repo_impl.dart';
@@ -56,5 +58,9 @@ void setupGetIt() {
 
   getIt.registerSingleton<FavoritRepo>(
     FavoritRepoImpl(dataBaseService: getIt<DataBaseService>()),
+  );
+
+  getIt.registerSingleton<AboutRepo>(
+    AboutRepoImpl(dataBaseService: getIt<DataBaseService>()),
   );
 }
