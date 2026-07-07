@@ -14,4 +14,6 @@ class AboutModel {
   }
 
   Map<String, dynamic> tojson() => {'aboutText': aboutText};
+
+  AboutEntity toEntity() => AboutEntity(aboutText: aboutText);
 }

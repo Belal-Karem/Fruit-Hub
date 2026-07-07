@@ -11,4 +11,5 @@ class BackendEndpoint {
 
   static const addFavorit = 'favorits';
   static const getFavorit = 'favorits';
+  static const getAbout = 'about';
 }
