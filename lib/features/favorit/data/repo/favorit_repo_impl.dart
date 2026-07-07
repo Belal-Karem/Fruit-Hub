@@ -9,6 +9,8 @@ import 'package:fruit_hub/features/favorit/data/models/favorit_model.dart';
 import 'package:fruit_hub/features/favorit/domain/entites/favorit_entity.dart';
 import 'package:fruit_hub/features/favorit/domain/repo/favorit_repo.dart';
 
+import '../../../../core/helper_functions/get_user.dart';
+
 class FavoritRepoImpl implements FavoritRepo {
   final DataBaseService dataBaseService;
 
@@ -38,8 +40,8 @@ class FavoritRepoImpl implements FavoritRepo {
       var data =
           await dataBaseService.getData(
                 path: BackendEndpoint.getFavorit,
-                // whereField: 'uId',
-                // whereValue: getUserData().uId,
+                whereField: 'uId',
+                whereValue: getUserData().uId,
               )
               as List<Map<String, dynamic>>;
       List<FavoritModel> favorit = data
@@ -49,7 +51,6 @@ class FavoritRepoImpl implements FavoritRepo {
       List<FavoritEntity> favoritEntities = favorit
           .map((e) => e.toEntity())
           .toList();
-
       return right(favoritEntities);
     } on CustomException catch (e) {
       log('Exception in ProductsRepoImpl.getFavorit ${e.toString()}');

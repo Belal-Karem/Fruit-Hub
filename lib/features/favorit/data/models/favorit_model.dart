@@ -33,4 +33,6 @@ class FavoritModel {
 
   FavoritEntity toEntity() =>
       FavoritEntity(uId: uId, isFavorit: isFavorit, products: products);
+
+  toMap() => {'uId': uId, 'isFavorit': isFavorit};
 }
