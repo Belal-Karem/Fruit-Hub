@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/entites/product_entity.dart';
-
 import '../../../../../core/widgets/fruit_item.dart';
+import '../../../domain/entites/favorit_entity.dart';
 
 class FavoritGridView extends StatelessWidget {
-  const FavoritGridView({super.key, required this.products});
+  const FavoritGridView({super.key, required this.favorit});
 
-  final List<ProductEntity> products;
+  final List<FavoritEntity> favorit;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: products.length,
+      itemCount: favorit.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 163 / 214,
@@ -20,7 +18,7 @@ class FavoritGridView extends StatelessWidget {
         crossAxisSpacing: 16,
       ),
       itemBuilder: (context, index) {
-        return FruitItem(product: products[index]);
+        return FruitItem(product: favorit[index].products);
       },
     );
   }

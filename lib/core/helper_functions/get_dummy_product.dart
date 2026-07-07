@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:fruit_hub/core/entites/product_entity.dart';
+import 'package:fruit_hub/features/favorit/domain/entites/favorit_entity.dart';
 
 ProductEntity getDummyProduct() {
   return ProductEntity(
@@ -19,6 +20,10 @@ ProductEntity getDummyProduct() {
   );
 }
 
+FavoritEntity getDummyFavorit() {
+  return FavoritEntity(uId: '', isFavorit: true, products: getDummyProduct());
+}
+
 List<ProductEntity> getDummyProductList = [
   getDummyProduct(),
   getDummyProduct(),
@@ -34,4 +39,21 @@ List<ProductEntity> getDummyProductList = [
   getDummyProduct(),
   getDummyProduct(),
   getDummyProduct(),
+];
+
+List<FavoritEntity> getDummyFavoritList = [
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
+  getDummyFavorit(),
 ];

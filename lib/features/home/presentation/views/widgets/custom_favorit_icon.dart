@@ -18,7 +18,7 @@ class CustomFavoriteIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        context.read<FavoritCubit>().addFavorit(product);
+        context.read<FavoritCubit>().addFavorit(product, true);
       },
       icon: icon,
     );

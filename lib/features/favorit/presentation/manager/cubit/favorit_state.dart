@@ -14,8 +14,8 @@ class FavoritLoading extends FavoritState {}
 class AddFavoritSuccess extends FavoritState {}
 
 class GetFavoritSuccess extends FavoritState {
-  final List<ProductEntity> productEntities;
-  const GetFavoritSuccess(this.productEntities);
+  final List<FavoritEntity> favoritEntity;
+  const GetFavoritSuccess(this.favoritEntity);
 }
 
 class FavoritFailure extends FavoritState {

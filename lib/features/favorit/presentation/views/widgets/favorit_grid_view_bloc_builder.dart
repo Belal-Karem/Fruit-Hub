@@ -20,15 +20,15 @@ class FavoritGridViewBlocBuilder extends StatelessWidget {
         if (state is FavoritLoading) {
           CustomModalProgressHUD(
             isLoading: FavoritLoading is FavoritLoading ? true : false,
-            child: FavoritGridView(products: getDummyProductList),
+            child: FavoritGridView(favorit: getDummyFavoritList),
           );
         }
       },
       builder: (context, state) {
         if (state is GetFavoritSuccess) {
-          return FavoritGridView(products: state.productEntities);
+          return FavoritGridView(favorit: state.favoritEntity);
         } else {
-          return FavoritGridView(products: getDummyProductList);
+          return FavoritGridView(favorit: getDummyFavoritList);
         }
       },
     );
