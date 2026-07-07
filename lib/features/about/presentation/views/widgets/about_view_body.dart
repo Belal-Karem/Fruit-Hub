@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hub/constants.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
+import 'package:fruit_hub/features/about/domain/entites/about_entity.dart';
 
 class AboutViewBody extends StatelessWidget {
-  const AboutViewBody({super.key});
+  const AboutViewBody({super.key, required this.about});
+
+  final AboutEntity about;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,8 @@ class AboutViewBody extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(18),
                     child: Text(
+                      about.aboutText,
                       style: AppTextStyle.semiBold13,
-                      'هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص. إن كنت تريد أن تستخدم نص لوريم إيبسوم ما، عليك أن تتحقق أولاً أن ليس هناك أي كلمات أو عبارات محرجة أو غير لائقة مخبأة في هذا النص`',
                     ),
                   ),
                 ),

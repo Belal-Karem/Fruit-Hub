@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/features/favorit/presentation/views/widgets/favorit_grid_view.dart';
 
-import '../../../../../core/helper_functions/get_dummy_product.dart';
+import '../../../../../core/helper_functions/get_dummy.dart';
 import '../../../../../core/helper_functions/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_modal_progress_hud.dart';
 import '../../manager/cubit/favorit_cubit.dart';

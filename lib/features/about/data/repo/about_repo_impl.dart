@@ -18,7 +18,7 @@ class AboutRepoImpl implements AboutRepo {
   Future<Either<Failure, AboutEntity>> getAbout() async {
     try {
       var data = await dataBaseService.getData(path: BackendEndpoint.getAbout);
-      return right(AboutModel.fromJson(data).toEntity());
+      return right(AboutModel.fromJson(data.first).toEntity());
     } on CustomException catch (e) {
       log('Exception in AboutRepoImpl.getAbout ${e.toString()}');
       return left(ServerFailure(e.message));

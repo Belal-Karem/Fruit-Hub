@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/cubits/products_cubit/products_cubit.dart';
-import 'package:fruit_hub/core/helper_functions/get_dummy_product.dart';
+import 'package:fruit_hub/core/helper_functions/get_dummy.dart';
 import 'package:fruit_hub/core/widgets/custom_error_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
