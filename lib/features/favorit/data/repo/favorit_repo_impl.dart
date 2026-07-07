@@ -40,8 +40,8 @@ class FavoritRepoImpl implements FavoritRepo {
       var data =
           await dataBaseService.getData(
                 path: BackendEndpoint.getFavorit,
-                whereField: 'uId',
-                whereValue: getUserData().uId,
+                // whereField: 'uId',
+                // whereValue: getUserData().uId,
               )
               as List<Map<String, dynamic>>;
       List<ProductModel> products = data

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
-import 'package:fruit_hub/features/favorit/presentation/views/widgets/favorit_grid_view.dart';
+import 'package:fruit_hub/features/favorit/presentation/views/widgets/favorit_grid_view_bloc_builder.dart';
 
 class FavoritViewBody extends StatelessWidget {
   const FavoritViewBody({super.key});
@@ -14,7 +14,7 @@ class FavoritViewBody extends StatelessWidget {
           title: 'المفضلة',
           showNotification: false,
         ),
-        Expanded(child: FavoritGridView()),
+        Expanded(child: FavoritGridViewBlocBuilder()),
       ],
     );
   }
