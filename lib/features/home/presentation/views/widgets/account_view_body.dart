@@ -3,6 +3,7 @@ import 'package:fruit_hub/core/utils/app_images.dart';
 import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_divider.dart';
+import 'package:fruit_hub/features/about/presentation/views/about_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/account_header_bloc_builder.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/account_item_list_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/widgets/signout_button.dart';
@@ -47,19 +48,23 @@ class AccountViewBody extends StatelessWidget {
                     const SizedBox(height: 22),
                     Text('المساعده', style: AppTextStyle.semiBold13),
                     const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        SvgPicture.asset(Assets.imagesInfoCircleIcon),
-                        const SizedBox(width: 7),
-                        Text(
-                          'من نحن',
-                          style: AppTextStyle.semiBold13.copyWith(
-                            color: const Color(0xFF949D9E),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, AboutView.routeName),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(Assets.imagesInfoCircleIcon),
+                          const SizedBox(width: 7),
+                          Text(
+                            'من نحن',
+                            style: AppTextStyle.semiBold13.copyWith(
+                              color: const Color(0xFF949D9E),
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        SvgPicture.asset(Assets.imagesArrowRight),
-                      ],
+                          const Spacer(),
+                          SvgPicture.asset(Assets.imagesArrowRight),
+                        ],
+                      ),
                     ),
                     CustomDivider(),
                   ],
