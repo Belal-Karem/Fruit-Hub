@@ -93,9 +93,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               ),
               const SizedBox(height: 16),
               Platform.isIOS
-                  ? const Column(
+                  ? Column(
                       children: [
                         SocialLoginButton(
+                          onPressed: () {
+                            context.read<SigninCubit>().signinWithApple();
+                          },
                           text: 'تسجيل بواسطة أبل',
                           imagePath: Assets.imagesAppleIcon,
                         ),

@@ -159,4 +159,18 @@ class AuthRepoImle extends AuthRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithApple() async {
+    try {
+      var user = await firebaseAuthService.signInWithApple();
+      return right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      log('Exception in AuthRepoImle.signInWithApple ${e.toString()}');
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in AuthRepoImle.signInWithApple ${e.toString()}');
+      return left(ServerFailure('حدث خطاء غير متوقع'));
+    }
+  }
 }

@@ -43,4 +43,13 @@ class SigninCubit extends Cubit<SigninState> {
       (userEntity) => emit(SigninSuccess(user: userEntity)),
     );
   }
+
+  Future<void> signinWithApple() async {
+    emit(SigninLoading());
+    final result = await authRepo.signInWithApple();
+    result.fold(
+      (failure) => emit(SigninFailure(message: failure.message)),
+      (userEntity) => emit(SigninSuccess(user: userEntity)),
+    );
+  }
 }
