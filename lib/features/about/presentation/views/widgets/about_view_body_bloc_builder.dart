@@ -4,6 +4,7 @@ import 'package:fruit_hub/core/widgets/custom_modal_progress_hud.dart';
 import 'package:fruit_hub/features/about/presentation/manager/cubit/about_cubit.dart';
 import 'package:fruit_hub/features/about/presentation/views/widgets/about_view_body.dart';
 import '../../../../../core/helper_functions/get_dummy.dart';
+import '../../../../../core/helper_functions/show_snack_bar.dart';
 
 class AboutViewBodyBlocBuilder extends StatelessWidget {
   const AboutViewBodyBlocBuilder({super.key});
@@ -16,7 +17,7 @@ class AboutViewBodyBlocBuilder extends StatelessWidget {
           return AboutViewBody(about: state.about);
         }
         if (state is AboutFailure) {
-          //  showErrorBar(context, state.message);
+          showErrorBar(context, state.message);
         }
         if (state is AboutLoading) {
           return CustomModalProgressHUD(

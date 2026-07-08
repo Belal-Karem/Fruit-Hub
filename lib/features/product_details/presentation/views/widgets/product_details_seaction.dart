@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/entites/product_entity.dart';
+import 'package:fruit_hub/features/product_details/presentation/views/review_view.dart';
 import 'package:fruit_hub/features/product_details/presentation/views/widgets/product_info_cards.dart';
 import '../../../../../core/utils/theme/app_color.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
@@ -58,11 +59,16 @@ class _ProductDetailsSectionState extends State<ProductDetailsSection> {
             const SizedBox(width: 9),
             Text('(${product.ratingCount})', style: AppTextStyle.regular13),
             const SizedBox(width: 9),
-            Text(
-              'المراجعه',
-              style: AppTextStyle.bold13.copyWith(
-                decoration: TextDecoration.underline,
-                color: AppColor.primaryColor,
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, ReviewView.routeName);
+              },
+              child: Text(
+                'المراجعه',
+                style: AppTextStyle.bold13.copyWith(
+                  decoration: TextDecoration.underline,
+                  color: AppColor.primaryColor,
+                ),
               ),
             ),
           ],

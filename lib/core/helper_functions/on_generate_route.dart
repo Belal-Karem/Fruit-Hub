@@ -14,6 +14,7 @@ import 'package:fruit_hub/features/product_details/presentation/views/item_detai
 import 'package:fruit_hub/features/home/presentation/views/main_view.dart';
 import 'package:fruit_hub/features/home/presentation/views/products_view.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:fruit_hub/features/product_details/presentation/views/review_view.dart';
 import 'package:fruit_hub/features/profile/presentation/views/profile_view.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_view.dart';
 
@@ -30,6 +31,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
+    case ReviewView.routeName:
+      return MaterialPageRoute(builder: (context) => const ReviewView());
     case AboutView.routeName:
       return MaterialPageRoute(builder: (context) => const AboutView());
     case FavoritView.routeName:
