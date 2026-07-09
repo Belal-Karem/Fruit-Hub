@@ -173,4 +173,18 @@ class AuthRepoImle extends AuthRepo {
       return left(ServerFailure('حدث خطاء غير متوقع'));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> forgotPassword({required String email}) async {
+    try {
+      await firebaseAuthService.forgetPassword(email: email);
+      return right(null);
+    } on CustomException catch (e) {
+      log('Exception in AuthRepoImle.forgotPassword ${e.toString()}');
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in AuthRepoImle.forgotPassword ${e.toString()}');
+      return left(ServerFailure('حدث خطاء غير متوقع'));
+    }
+  }
 }

@@ -225,4 +225,22 @@ class FirebaseAuthService {
       oauthCredential,
     )).user!;
   }
+
+  Future<void> forgetPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      log(
+        'Exception in FirebaseAuthService.forgetPassword${e.toString()} and code is ${e.code}',
+      );
+      if (e.code == 'user-not-found') {
+        throw CustomException('الحساب غير موجود.');
+      } else {
+        throw CustomException('حدث خطاء. يرجى المحاولة مرة اخرى لاحقا.');
+      }
+    } catch (e) {
+      log('Exception in FirebaseAuthService.forgetPassword${e.toString()}');
+      throw CustomException('حدث خطاء. يرجى المحاولة مرة اخرى لاحقا.');
+    }
+  }
 }
