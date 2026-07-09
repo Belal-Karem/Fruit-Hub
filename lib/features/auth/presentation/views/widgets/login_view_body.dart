@@ -10,6 +10,7 @@ import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruit_hub/core/widgets/password_field.dart';
 import 'package:fruit_hub/features/auth/presentation/manager/login_cubit/signin_cubit.dart';
+import 'package:fruit_hub/features/auth/presentation/views/forget_password_view.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:fruit_hub/features/auth/presentation/views/widgets/social_login_button.dart';
@@ -53,7 +54,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        ForgetPasswordView.routeName,
+                      );
+                    },
                     child: Text(
                       'نسيت كلمة المرور؟',
                       style: AppTextStyle.bold13.copyWith(
