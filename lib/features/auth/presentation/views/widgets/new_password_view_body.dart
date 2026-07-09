@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hub/core/utils/theme/app_color.dart';
-import 'package:fruit_hub/features/auth/presentation/views/new_password_view.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utils/theme/app_text_style.dart';
 import '../../../../../core/widgets/build_app_bar.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/otp_input_field.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
 
-class OtpVerifiViewBody extends StatelessWidget {
-  const OtpVerifiViewBody({super.key});
+class NewPasswordViewBody extends StatelessWidget {
+  const NewPasswordViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,37 +15,33 @@ class OtpVerifiViewBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildAppBar(
               context: context,
-              title: 'التحقق من الرمز',
+              title: 'كلمة مرور جديدة',
               showNotification: false,
             ),
             const SizedBox(height: 24),
             Text(
-              'أدخل الرمز الذي أرسلناه إلى عنوان بريد التالي   Maxxx@email.com',
+              'قم بإنشاء كلمة مرور جديدة لتسجيل الدخول',
               textAlign: TextAlign.right,
               style: AppTextStyle.semiBold16.copyWith(
                 color: const Color(0xFF616A6B),
               ),
             ),
             const SizedBox(height: 31),
-            OtpInputField(),
-            const SizedBox(height: 30),
-            CustomButton(
-              text: 'تحقق من الرمز',
-              onPressed: () {
-                Navigator.pushNamed(context, NewPasswordView.routeName);
-              },
+            CustomTextFormField(
+              hintText: 'كلمة المرور',
+              keyboardType: TextInputType.phone,
             ),
             const SizedBox(height: 24),
-            Text(
-              'إعادة إرسال الرمز',
-              textAlign: TextAlign.center,
-              style: AppTextStyle.semiBold16.copyWith(
-                color: AppColor.lightPrimaryColor,
-              ),
+            CustomTextFormField(
+              hintText: 'تاكيد كلمة المرور',
+              keyboardType: TextInputType.phone,
             ),
+            const SizedBox(height: 30),
+            CustomButton(text: 'إنشاء كلمة مرور جديدة', onPressed: () {}),
           ],
         ),
       ),
