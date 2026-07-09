@@ -3,6 +3,7 @@ import 'package:fruit_hub/core/entites/product_entity.dart';
 import 'package:fruit_hub/features/about/presentation/views/about_view.dart';
 import 'package:fruit_hub/features/auth/presentation/views/forget_password_view.dart';
 import 'package:fruit_hub/features/auth/presentation/views/login_view.dart';
+import 'package:fruit_hub/features/auth/presentation/views/otp_verifi_view.dart';
 import 'package:fruit_hub/features/auth/presentation/views/signup_view.dart';
 import 'package:fruit_hub/features/best_selling_fruit/presentation/views/best_selling_view.dart';
 import 'package:fruit_hub/features/checkout/presentation/views/checkout_view.dart';
@@ -38,6 +39,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const ForgetPasswordView(),
       );
+    case OtpVerifiView.routeName:
+      return MaterialPageRoute(builder: (context) => const OtpVerifiView());
     case AboutView.routeName:
       return MaterialPageRoute(builder: (context) => const AboutView());
     case FavoritView.routeName:

@@ -4,6 +4,7 @@ import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:fruit_hub/core/widgets/build_app_bar.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruit_hub/features/auth/presentation/views/otp_verifi_view.dart';
 
 class ForgetPasswordViewBody extends StatelessWidget {
   const ForgetPasswordViewBody({super.key});
@@ -34,7 +35,12 @@ class ForgetPasswordViewBody extends StatelessWidget {
               keyboardType: TextInputType.phone,
             ),
             const SizedBox(height: 30),
-            CustomButton(text: 'نسيت كلمة المرور'),
+            CustomButton(
+              text: 'نسيت كلمة المرور',
+              onPressed: () {
+                Navigator.pushNamed(context, OtpVerifiView.routeName);
+              },
+            ),
           ],
         ),
       ),
