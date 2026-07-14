@@ -35,7 +35,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 const SizedBox(height: kTopPadding),
                 const CustomHomeAppBar(),
                 const SizedBox(height: 16),
-                const SearchTexField(),
+                SearchTexField(
+                  onChanged: (value) {
+                    context.read<ProductsCubit>().filterProducts(value: value);
+                  },
+                ),
                 const SizedBox(height: 12),
                 FeaturedListView(),
                 const SizedBox(height: 12),

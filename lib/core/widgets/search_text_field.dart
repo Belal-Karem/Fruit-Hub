@@ -4,7 +4,9 @@ import 'package:fruit_hub/core/utils/theme/app_text_style.dart';
 import 'package:svg_flutter/svg.dart';
 
 class SearchTexField extends StatelessWidget {
-  const SearchTexField({super.key});
+  const SearchTexField({super.key, this.onChanged});
+
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class SearchTexField extends StatelessWidget {
         ],
       ),
       child: TextField(
+        onChanged: onChanged,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           filled: true,
